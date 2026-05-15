@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Health AI Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0f7a6e;
+      --teal-light: #e6f4f2;
+      --teal-mid: #1a9e8f;
+      --text: #1a1a1a;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-soft: #f9fafb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* LAYOUT */
+    .page { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HERO */
+    #about {
+      padding: 120px 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .hero-text h1 {
+      font-family: 'Lora', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-text .affil {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .hero-text .affil span {
+      color: var(--teal);
+      font-weight: 500;
+    }
+    .hero-text p {
+      font-size: 1rem;
+      color: #374151;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+    .tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: var(--teal-light);
+      color: var(--teal);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 9px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.18s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      border: 1px solid var(--teal);
+    }
+    .btn-primary:hover { background: #0a6860; border-color: #0a6860; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: #9ca3af; background: var(--bg-soft); }
+
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+    .avatar {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      background: var(--teal-light);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      color: var(--teal);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* SECTION */
+    section { padding: 64px 0; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    /* PUBLICATIONS */
+    .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .pub-item {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .pub-item:hover {
+      border-color: #c7ded9;
+      box-shadow: 0 2px 12px rgba(15,122,110,0.07);
+    }
+    .pub-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--teal-light);
+      color: var(--teal);
+      padding: 2px 9px;
+      border-radius: 4px;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+    .pub-title {
+      font-family: 'Lora', serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .pub-authors {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .pub-authors strong { color: var(--text); font-weight: 500; }
+    .pub-venue {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .pub-links { display: flex; gap: 0.75rem; margin-top: 0.85rem; }
+    .pub-link {
+      font-size: 0.8rem;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 3px;
+      transition: opacity 0.15s;
+    }
+    .pub-link:hover { opacity: 0.75; }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding-top: 2px;
+      font-weight: 300;
+    }
+    .exp-role { font-weight: 500; font-size: 1rem; margin-bottom: 2px; }
+    .exp-org {
+      font-size: 0.875rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .exp-desc { font-size: 0.9rem; color: #4b5563; line-height: 1.65; }
+
+    /* CONTACT */
+    #contact { padding-bottom: 80px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-card:hover {
+      border-color: #c7ded9;
+      background: var(--teal-light);
+    }
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: var(--teal-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--teal); fill: none; stroke-width: 1.8; }
+    .contact-label { font-size: 0.78rem; color: var(--text-muted); }
+    .contact-value { font-size: 0.9rem; font-weight: 500; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* FADE-IN */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      #about { grid-template-columns: 1fr; }
+      .avatar-wrap { order: -1; justify-content: flex-start; }
+      .avatar { width: 100px; height: 100px; font-size: 1.4rem; }
+      .hero-text h1 { font-size: 1.8rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#about">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page">
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="hero-text fade-in">
+        <h1>Your Name (你的名字)</h1>
+        <p class="affil">
+          M.S. Student · <span>Your University</span> · Expected Grad. 2025
+        </p>
+        <p>
+          I am a master's student in [Your Department] at [Your University], advised by
+          <a href="#" style="color:var(--teal); text-decoration:none; font-weight:500">Prof. XX</a>.
+          My research sits at the intersection of <strong>large language models</strong>,
+          <strong>clinical NLP</strong>, and <strong>AI-driven clinical decision support</strong>.
+        </p>
+        <p>
+          I am broadly interested in building trustworthy, safe AI systems for high-stakes
+          healthcare settings — from automated clinical reasoning to multi-agent pipelines
+          for patient management.
+        </p>
+        <div class="tags">
+          <span class="tag">Health AI</span>
+          <span class="tag">LLM</span>
+          <span class="tag">Clinical NLP</span>
+          <span class="tag">AI Agents</span>
+          <span class="tag">EHR</span>
+        </div>
+        <div class="hero-actions">
+          <a href="cv.pdf" class="btn btn-primary" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <a href="mailto:youremail@example.com" class="btn btn-outline">Email Me</a>
+          <a href="https://scholar.google.com" target="_blank" class="btn btn-outline">Google Scholar</a>
+        </div>
+      </div>
+      <div class="avatar-wrap fade-in" style="transition-delay:0.1s">
+        <!-- Replace with <img src="photo.jpg" alt="Your Name" class="avatar" /> -->
+        <div class="avatar">YN</div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="fade-in">
+      <p class="section-label">Research</p>
+      <h2 class="section-title">Publications & Preprints</h2>
+
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <span class="pub-badge">NeurIPS 2024</span>
+          <div class="pub-title">Your Paper Title: Leveraging LLMs for Clinical Decision Support</div>
+          <div class="pub-authors"><strong>Your Name</strong>, Co-author A, Co-author B, Supervisor Name</div>
+          <div class="pub-venue">Advances in Neural Information Processing Systems, 2024</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Paper
+            </a>
+            <a href="#" class="pub-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77A5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              Code
+            </a>
+            <a href="#" class="pub-link">arXiv</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-badge">EMNLP 2024</span>
+          <div class="pub-title">Multi-Agent Framework for Automated Clinical Triage Using GPT-4</div>
+          <div class="pub-authors">Co-author A, <strong>Your Name</strong>, Supervisor Name</div>
+          <div class="pub-venue">Empirical Methods in Natural Language Processing, 2024</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Paper
+            </a>
+            <a href="#" class="pub-link">Demo</a>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <span class="pub-badge" style="background:#fef3c7; color:#92400e;">Preprint</span>
+          <div class="pub-title">Benchmarking LLM Agents on Electronic Health Record Reasoning Tasks</div>
+          <div class="pub-authors"><strong>Your Name</strong>, Co-author B, Co-author C</div>
+          <div class="pub-venue">arXiv preprint, 2025</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">arXiv</a>
+            <a href="#" class="pub-link">Dataset</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="fade-in">
+      <p class="section-label">Background</p>
+      <h2 class="section-title">Research Experience</h2>
+
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-date">2024.01 – Now</div>
+          <div>
+            <div class="exp-role">Research Assistant</div>
+            <div class="exp-org">Lab for Health AI, Your University</div>
+            <div class="exp-desc">Working on LLM-based clinical reasoning with Prof. XX. Focused on building agent systems that interact with EHR data for automated triage and differential diagnosis generation.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">2023 Summer</div>
+          <div>
+            <div class="exp-role">Research Intern</div>
+            <div class="exp-org">Company / Institute Name</div>
+            <div class="exp-desc">Developed a retrieval-augmented generation (RAG) pipeline for clinical guideline summarization. Collaborated with clinicians to evaluate model outputs on real-world scenarios.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">2020 – 2024</div>
+          <div>
+            <div class="exp-role">B.Eng. in Computer Science</div>
+            <div class="exp-org">Your Undergraduate University</div>
+            <div class="exp-desc">GPA: X.XX / 4.0. Thesis: "Applying Transformer Models to Clinical Text Classification." Graduated with honors.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <p style="color:#4b5563; margin-bottom: 0.5rem;">
+        I am actively applying for PhD programs (Fall 2026). Feel free to reach out if you'd like to discuss research or potential collaborations.
+      </p>
+      <div class="contact-grid">
+        <a href="mailto:youremail@example.com" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">youremail@example.com</div>
+          </div>
+        </a>
+        <a href="https://github.com/yourusername" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">@yourusername</div>
+          </div>
+        </a>
+        <a href="https://scholar.google.com" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8l-4 4h3v4h2v-4h3z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Google Scholar</div>
+            <div class="contact-value">Your Name</div>
+          </div>
+        </a>
+        <a href="cv.pdf" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Curriculum Vitae</div>
+            <div class="contact-value">Download PDF</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Your Name · Built with GitHub Pages</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
