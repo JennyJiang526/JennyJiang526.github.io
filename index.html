@@ -11,7 +11,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --blue: #2563eb; --blue-dark: #1d4ed8;
-      --blue-light: #eff6ff; --blue-mid: #3b82f6;
+      --blue-light: #eff6ff;
       --text: #1a1a1a; --text-muted: #6b7280;
       --border: #e5e7eb; --bg: #ffffff; --bg-soft: #f9fafb;
     }
@@ -19,7 +19,7 @@
     body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text); background: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
     nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 2rem; height: 52px; display: flex; align-items: center; justify-content: space-between; }
     .nav-name { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--text); text-decoration: none; letter-spacing: 0.01em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
     .nav-links a { font-size: 0.875rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
     .nav-links a:hover { color: var(--blue); }
     .page { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
@@ -60,6 +60,10 @@
     .exp-role { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; line-height: 1.35; color: var(--text); }
     .exp-org { font-size: 0.845rem; color: var(--blue); font-weight: 500; margin-bottom: 0.35rem; }
     .exp-desc { font-size: 0.875rem; color: #4b5563; line-height: 1.65; }
+    /* Selected additional */
+    .additional-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
+    .additional-item { font-size: 0.875rem; color: #4b5563; padding: 0.6rem 1rem; background: var(--bg-soft); border-radius: 7px; border: 1px solid var(--border); line-height: 1.55; }
+    .additional-item span { color: var(--blue); font-weight: 500; }
     #contact { padding-bottom: 64px; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
     .contact-card { display: flex; align-items: center; gap: 11px; padding: 0.85rem 1.1rem; border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: var(--text); transition: border-color 0.2s, background 0.2s; }
@@ -121,7 +125,7 @@
     </div>
     <div class="avatar-wrap fade-in" style="transition-delay:0.1s">
       <!-- Replace with <img src="photo.jpg" alt="Sihan Jiang" class="avatar" /> -->
-      <div class="avatar">SJ</div>
+      <img src="photo.jpg" alt="Sihan Jiang" class="avatar" />
     </div>
   </section>
 
@@ -143,9 +147,9 @@
       <div class="exp-item">
         <div class="exp-date">08/2021 – 05/2025</div>
         <div>
-          <div class="exp-role">B.S. Applied Mathematics &amp; Computational Science / Computer Science (DKU)<br/>B.S. Interdisciplinary Studies — CS; Applied Math &amp; Computational Science (Duke)</div>
+          <div class="exp-role">B.S. in Applied Mathematics &amp; Computational Science / Computer Science (DKU)<br/>B.S. in Interdisciplinary Studies — CS; Applied Math &amp; Computational Science (Duke)</div>
           <div class="exp-org">Duke Kunshan University &amp; Duke University · GPA: 3.81 / 4.00 · Cum Laude</div>
-          <div class="exp-desc">Latin Honors (Cum Laude); Dean's List (Fall 2021, Spring 2022, Spring 2024).<br/>Coursework: Principles of Machine Learning, Design &amp; Analysis of Algorithms, Cell and Molecular Biology.</div>
+          <div class="exp-desc">Latin Honors (Cum Laude); Dean's List (Fall 2021, Spring 2022, Spring 2024).<br/>Coursework: Principles of Machine Learning, Design &amp; Analysis of Algorithms, Cell and Molecular Biology, Integrated Science – Chemistry.</div>
         </div>
       </div>
     </div>
@@ -158,6 +162,13 @@
     <p class="section-label">Research</p>
     <h2 class="section-title">Publications &amp; Conference Presentations</h2>
     <div class="pub-list">
+
+      <div class="pub-item">
+        <span class="pub-badge" style="background:#fef3c7;color:#92400e;">Nature · Submitted</span>
+        <div class="pub-title">Benchmarking AI Agents for Addressing Scientific Challenges Across Scales</div>
+        <div class="pub-authors">Liu, T., Wang, A. X., Panescu, A., Chen, L. X., Long, W., Wei, X., Jing, Y., Zeng, Z., Chen, J., <strong>Jiang, S.</strong>, et al., Xu, H., &amp; Zhao, H.</div>
+        <div class="pub-venue">Manuscript submitted to Nature, 2026 (Task Contributor; Equal Contribution)</div>
+      </div>
 
       <div class="pub-item">
         <span class="pub-badge" style="background:#fef3c7;color:#92400e;">npj Drug Discovery · Under Review</span>
@@ -210,20 +221,20 @@
     <div class="exp-list">
 
       <div class="exp-item">
-        <div class="exp-date">03/2026 – Present</div>
+        <div class="exp-date">01/2026 – Present</div>
         <div>
-          <div class="exp-role">End-to-End Nextflow Data Processing Pipeline for Expanding the VDJbase Database</div>
-          <div class="exp-org">Research Assistant · Prof. Gur Yaari, Yale University</div>
-          <div class="exp-desc">Built a data-ingestion pipeline transferring AIRR-seq data to Yale HPC via igserver; executed nf-core/airrflow with Nextflow/DSL2 and Slurm for V(D)J assignment, novel allele inference, and genotype/haplotype calling. Supported expansion of VDJbase's population-level germline sequence database.</div>
+          <div class="exp-role">Benchmarking AI Agents for Addressing Multi-Scale Scientific Challenges</div>
+          <div class="exp-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
+          <div class="exp-desc">Designed drug safety and pharmacological evaluation tasks for AI agents (toxicophoric detection, hERG prediction, PAINS filter, metabolic soft spot identification, "cyanide trap" detection); tested agents' ability to detect dataset corruption and instruction conflicts. Developed task-based evaluation metrics (F1 score, multi-tier toxicity alert accuracy, stratification accuracy); investigated failure modes across general LLMs, multidomain agents, and chemistry-specialized agents. Built reproducible analysis and visualization pipelines for large-scale comparative model evaluation.</div>
         </div>
       </div>
 
       <div class="exp-item">
-        <div class="exp-date">01/2026 – 05/2026</div>
+        <div class="exp-date">03/2026 – Present</div>
         <div>
-          <div class="exp-role">Benchmarking AI Agents for Addressing Multi-Scale Scientific Challenges</div>
-          <div class="exp-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
-          <div class="exp-desc">Designed drug safety and pharmacological evaluation tasks (toxicophoric detection, hERG prediction, PAINS filter, metabolic soft spot identification); developed task-based evaluation metrics (F1 score, toxicity alert accuracy, stratification accuracy); investigated failure modes across general LLMs, multidomain agents, and chemistry-specialized agents.</div>
+          <div class="exp-role">End-to-End Nextflow Data Processing Pipeline for Expanding the VDJbase Database</div>
+          <div class="exp-org">Research Assistant · Prof. Gur Yaari, Yale University</div>
+          <div class="exp-desc">Designed and built an end-to-end data-ingestion pipeline to transfer assembled and FASTQ-format AIRR-seq data to Yale HPC via igserver; executed nf-core/airrflow with Nextflow/DSL2 and Slurm for V(D)J assignment, novel allele inference, and genotype/haplotype calling. Maintained reproducible pipeline execution across large-scale HPC jobs and diagnosed workflow failures. Supported expansion of VDJbase's population-level germline sequence database.</div>
         </div>
       </div>
 
@@ -232,7 +243,7 @@
         <div>
           <div class="exp-role">DrugPlayGround: Benchmarking Large Language Models and Embeddings for Drug Discovery</div>
           <div class="exp-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
-          <div class="exp-desc">Benchmarked 5 LLMs (GPT, Gemini, Claude, DeepSeek, Mistral) and 5 embedding models on 100k+ drug descriptions across drug-function inference, drug-target interaction, drug synergy, and chemical perturbation tasks. Built Python batch-inference pipelines on Yale HPC with Slurm; implemented evaluation frameworks computing BERT, ROUGE, BLEU, and cosine similarity. Manuscript submitted to npj Drug Discovery.</div>
+          <div class="exp-desc">Investigated LLM-based drug representations as an alternative to structure-based molecular embeddings. Benchmarked 5 LLMs and 5 embedding models across drug synergy prediction, drug–protein interaction, and chemical perturbation tasks; curated 4 datasets (1,000+ cancer drug entries each) from PubChem and HuggingFace. Engineered Normal, CoT, and Meta prompting strategies; developed batch-inference pipelines on Yale HPC generating 100k+ drug descriptions. Demonstrated that LLM-derived embeddings outperform state-of-the-art molecular foundation models — up to 54% improvement in drug synergy prediction (R²) and 22% in drug–protein interaction accuracy.</div>
         </div>
       </div>
 
@@ -241,19 +252,17 @@
         <div>
           <div class="exp-role">Diabetes Prevention Chatbots to Help Dietary Self-Management for the Chinese Population</div>
           <div class="exp-org">Research Investigator · Prof. Ming-Chun Huang, Duke Kunshan University</div>
-          <div class="exp-desc">Fine-tuned GPT-3.5-turbo and GPT-4o on a curated China-specific diabetes prevention dataset; deployed a Streamlit web app with Firebase authentication and real-time chat history export. Published first-author paper at IEEE EMBC 2025.</div>
+          <div class="exp-desc">Investigated the use of LLMs for digital health interventions in culturally tailored diabetes prevention. Curated a China-specific guideline dataset from 5+ academic papers; fine-tuned GPT-3.5-turbo and GPT-4o via OpenAI API with scenario-based evaluation combining quantitative metrics and qualitative assessment. Developed and deployed an AI-driven Streamlit web app with Firebase authentication and real-time chat history export. Published first-author paper at IEEE EMBC 2025.</div>
         </div>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-date">06/2023 – 03/2024</div>
-        <div>
-          <div class="exp-role">Key Factors in AI Algorithms Applied in Cancer Treatment: A Systematic Review</div>
-          <div class="exp-org">Research Assistant · Prof. Meifang Chen, Duke Kunshan University</div>
-          <div class="exp-desc">Led a systematic review of 3,325+ articles; applied ROB2 and Cochrane frameworks to characterize AI-driven cancer treatment prediction models (LASSO, CNNs, ensemble methods) across genomic, imaging, and clinical inputs. Presented findings at CUGH 2024 (Los Angeles).</div>
-        </div>
-      </div>
+    </div>
 
+    <!-- Selected Additional -->
+    <p style="font-size:0.78rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:1.75rem;margin-bottom:0.75rem;">Selected Additional Experience</p>
+    <div class="additional-list">
+      <div class="additional-item"><span>Improving the Decision Boundary of Non-Parametric Outlier Synthesis (NPOS) Model</span> · Supervisor: Prof. Kaizhu Huang, Duke Kunshan University · 01/2025 – 03/2025</div>
+      <div class="additional-item"><span>Systematic Review: Key Factors in AI Algorithms Applied in Cancer Treatment</span> · Supervisor: Prof. Meifang Chen, Duke Kunshan University · 06/2023 – 03/2024</div>
     </div>
   </section>
 
@@ -269,7 +278,7 @@
         <div>
           <div class="exp-role">Data Scientist Intern · Merit Interactive Co., Ltd.</div>
           <div class="exp-org">Hangzhou, China</div>
-          <div class="exp-desc">Processed 100M+ healthcare and pharmacy records using FlinkSQL and Python; built and deployed 3 customer-facing APIs for pharmaceutical dataset access; developed interactive multidimensional visualizations supporting strategic marketing decisions.</div>
+          <div class="exp-desc">Processed and standardized 100M+ healthcare and pharmacy records using FlinkSQL and Python within a cloud-based data governance pipeline. Developed interactive multidimensional visualizations (heatmaps, bar charts, pie charts) analyzing medication sales and hospital operations for strategic marketing decisions. Built and tested 3 customer-facing APIs for pharmaceutical dataset access; deployed improved code to GitLab.</div>
         </div>
       </div>
     </div>
