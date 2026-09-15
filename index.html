@@ -60,7 +60,6 @@
     .exp-role { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; line-height: 1.35; color: var(--text); }
     .exp-org { font-size: 0.845rem; color: var(--blue); font-weight: 500; margin-bottom: 0.35rem; }
     .exp-desc { font-size: 0.875rem; color: #4b5563; line-height: 1.65; }
-    /* Selected additional */
     .additional-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
     .additional-item { font-size: 0.875rem; color: #4b5563; padding: 0.6rem 1rem; background: var(--bg-soft); border-radius: 7px; border: 1px solid var(--border); line-height: 1.55; }
     .additional-item span { color: var(--blue); font-weight: 500; }
@@ -115,16 +114,12 @@
         <span class="tag">Precision Medicine</span>
       </div>
       <div class="hero-actions">
-        <a href="Sihan-Jiang-CV.pdf" class="btn btn-primary" target="_blank">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download CV
-        </a>
         <a href="mailto:sihan.jiang@yale.edu" class="btn btn-outline">Email Me</a>
+        <a href="https://scholar.google.com/citations?hl=en&user=kggQUlIAAAAJ" target="_blank" class="btn btn-outline">Google Scholar</a>
         <a href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" class="btn btn-outline">LinkedIn</a>
       </div>
     </div>
     <div class="avatar-wrap fade-in" style="transition-delay:0.1s">
-      <!-- Replace with <img src="photo.jpg" alt="Sihan Jiang" class="avatar" /> -->
       <img src="photo.jpg" alt="Sihan Jiang" class="avatar" />
     </div>
   </section>
@@ -164,17 +159,17 @@
     <div class="pub-list">
 
       <div class="pub-item">
-        <span class="pub-badge" style="background:#fef3c7;color:#92400e;">Nature · Submitted</span>
+        <span class="pub-badge" style="background:#fef3c7;color:#92400e;">Nature · Under Revision</span>
         <div class="pub-title">Benchmarking AI Agents for Addressing Scientific Challenges Across Scales</div>
         <div class="pub-authors">Liu, T., Wang, A. X., Panescu, A., Chen, L. X., Long, W., Wei, X., Jing, Y., Zeng, Z., Chen, J., <strong>Jiang, S.</strong>, et al., Xu, H., &amp; Zhao, H.</div>
-        <div class="pub-venue">Manuscript submitted to Nature, 2026 (Task Contributor; Equal Contribution)</div>
+        <div class="pub-venue">Manuscript under revision at Nature, 2026 (Task Contributor; Equal Contribution)</div>
       </div>
 
       <div class="pub-item">
-        <span class="pub-badge" style="background:#fef3c7;color:#92400e;">npj Drug Discovery · Under Review</span>
+        <span class="pub-badge" style="background:#fef3c7;color:#92400e;">npj Drug Discovery · Under Revision</span>
         <div class="pub-title">DrugPlayGround: Benchmarking Large Language Models and Embeddings for Drug Discovery</div>
         <div class="pub-authors">Liu, T., <strong>Jiang, S.</strong>, Zhang, F., Sun, K., Head-Gordon, T., &amp; Zhao, H.</div>
-        <div class="pub-venue">Manuscript under review by npj Drug Discovery, 2026 (Co-First Authors)</div>
+        <div class="pub-venue">Manuscript under revision at npj Drug Discovery, 2026 (Co-First Authors)</div>
         <div class="pub-links">
           <a href="https://arxiv.org/abs/2604.02346" target="_blank" class="pub-link">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -221,20 +216,29 @@
     <div class="exp-list">
 
       <div class="exp-item">
-        <div class="exp-date">01/2026 – Present</div>
+        <div class="exp-date">07/2026 – Present</div>
         <div>
-          <div class="exp-role">Benchmarking AI Agents for Addressing Multi-Scale Scientific Challenges</div>
-          <div class="exp-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
-          <div class="exp-desc">Designed drug safety and pharmacological evaluation tasks for AI agents (toxicophoric detection, hERG prediction, PAINS filter, metabolic soft spot identification, "cyanide trap" detection); tested agents' ability to detect dataset corruption and instruction conflicts. Developed task-based evaluation metrics (F1 score, multi-tier toxicity alert accuracy, stratification accuracy); investigated failure modes across general LLMs, multidomain agents, and chemistry-specialized agents. Built reproducible analysis and visualization pipelines for large-scale comparative model evaluation.</div>
+          <div class="exp-role">Synthetic Cohort Generation and Robustness Studies for AI-based Clinical Trial Matching</div>
+          <div class="exp-org">Research Assistant · Prof. Tina Hernandez-Boussard, Stanford University · Mentor: Soumyadeep Roy</div>
+          <div class="exp-desc">Developed a trial-specific Synthea module generation pipeline with automated execution checks, including eligibility-profile generation, Synthea test runs, structured failure diagnosis, and diagnostic feedback stages. Implemented an eligibility-criteria fulfillment check loop with optimization memory, rollback, and convergence monitoring, reaching the highest LLM review score of 0.942 by GPT-5.4. Integrated the pipeline with TrialGPT by converting FHIR JSON files into compatible narrative formats; built robustness evaluators and a perturbation pipeline to assess trial-matching robustness under perturbed clinical information (missing labs, temporal edits, non-clinical factors).</div>
         </div>
       </div>
 
       <div class="exp-item">
-        <div class="exp-date">03/2026 – Present</div>
+        <div class="exp-date">05/2026 – Present</div>
         <div>
-          <div class="exp-role">End-to-End Nextflow Data Processing Pipeline for Expanding the VDJbase Database</div>
-          <div class="exp-org">Research Assistant · Prof. Gur Yaari, Yale University</div>
-          <div class="exp-desc">Designed and built an end-to-end data-ingestion pipeline to transfer assembled and FASTQ-format AIRR-seq data to Yale HPC via igserver; executed nf-core/airrflow with Nextflow/DSL2 and Slurm for V(D)J assignment, novel allele inference, and genotype/haplotype calling. Maintained reproducible pipeline execution across large-scale HPC jobs and diagnosed workflow failures. Supported expansion of VDJbase's population-level germline sequence database.</div>
+          <div class="exp-role">LLM-based Clinical AI Agents for EHR Phenotyping</div>
+          <div class="exp-org">Research Assistant · Prof. Hua Xu, Yale University</div>
+          <div class="exp-desc">Implemented eMERGE algorithms for Type 2 Diabetes, Dementia, and Hypothyroidism based on PheKB and PheMap; used DuckDB and SQL to derive gold standard phenotype labels from the Yale New Haven Health (YNHH) data system. Developed pipelines using GPT-5.4 with alpha, beta, and standard prompts, tool calling, disease-specific and generic skills to explore the best combination for generating phenotyping SQL queries. Improved LLM-generated SQL query performance across 3 phenotyping tasks — unlabeled-inclusive PPV and F1 reaching 74.5% / 80.0% (T2DM), 73.2% / 75.3% (Dementia), 15.1% / 26.0% (Hypothyroidism).</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">01/2026 – 06/2026</div>
+        <div>
+          <div class="exp-role">Benchmarking AI Agents for Addressing Multi-Scale Scientific Challenges</div>
+          <div class="exp-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
+          <div class="exp-desc">Designed drug safety and pharmacological evaluation tasks for AI agents (toxicophoric detection, hERG prediction, PAINS filter, metabolic soft spot identification, "cyanide trap" detection); tested agents' ability to detect dataset corruption and instruction conflicts. Developed task-based evaluation metrics (F1 score, multi-tier toxicity alert accuracy, stratification accuracy); investigated failure modes across general LLMs, multidomain agents, and chemistry-specialized agents. Built reproducible analysis and visualization pipelines for large-scale comparative model evaluation.</div>
         </div>
       </div>
 
@@ -256,9 +260,17 @@
         </div>
       </div>
 
+      <div class="exp-item">
+        <div class="exp-date">03/2026 – 08/2026</div>
+        <div>
+          <div class="exp-role">End-to-End Nextflow Data Processing Pipeline for Expanding the VDJbase Database</div>
+          <div class="exp-org">Research Assistant · Prof. Gur Yaari, Yale University</div>
+          <div class="exp-desc">Designed and built an end-to-end data-ingestion pipeline to transfer assembled and FASTQ-format AIRR-seq data to Yale HPC via igserver; executed nf-core/airrflow with Nextflow/DSL2 and Slurm for V(D)J assignment, novel allele inference, and genotype/haplotype calling. Maintained reproducible pipeline execution across large-scale HPC jobs and diagnosed workflow failures including session lock conflicts and resource allocation errors. Supported expansion of VDJbase's population-level germline sequence database by integrating processed repertoire data into the submission and curation workflow.</div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Selected Additional -->
     <p style="font-size:0.78rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:1.75rem;margin-bottom:0.75rem;">Selected Additional Experience</p>
     <div class="additional-list">
       <div class="additional-item"><span>Improving the Decision Boundary of Non-Parametric Outlier Synthesis (NPOS) Model</span> · Supervisor: Prof. Kaizhu Huang, Duke Kunshan University · 01/2025 – 03/2025</div>
@@ -296,17 +308,17 @@
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <div><div class="contact-label">Email</div><div class="contact-value">sihan.jiang@yale.edu</div></div>
       </a>
-      <a href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" class="contact-card">
-        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-        <div><div class="contact-label">LinkedIn</div><div class="contact-value">Sihan Jiang</div></div>
+      <a href="https://scholar.google.com/citations?hl=en&user=kggQUlIAAAAJ" target="_blank" class="contact-card">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div><div class="contact-label">Google Scholar</div><div class="contact-value">Sihan Jiang</div></div>
       </a>
       <a href="https://github.com/JennyJiang526" target="_blank" class="contact-card">
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
         <div><div class="contact-label">GitHub</div><div class="contact-value">@JennyJiang526</div></div>
       </a>
-      <a href="Sihan-Jiang-CV.pdf" target="_blank" class="contact-card">
-        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-        <div><div class="contact-label">Curriculum Vitae</div><div class="contact-value">Download PDF</div></div>
+      <a href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" class="contact-card">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-value">Sihan Jiang</div></div>
       </a>
     </div>
   </section>
