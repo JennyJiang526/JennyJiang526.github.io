@@ -4,268 +4,284 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sihan Jiang</title>
+  <meta name="description" content="Sihan Jiang is a Yale biostatistics student building and evaluating AI systems for biomedicine, from drug discovery to clinical records to population health." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --blue: #38bdf8; --indigo: #0ea5e9; --blue-dark: #0284c7;
-      --blue-light: #e0f2fe; --blue-faint: #f0f9ff;
-      --amber: #f59e0b; --amber-light: #fffbeb;
-      --text: #0f172a; --text-muted: #64748b; --text-soft: #334155;
-      --border: #e2e8f0; --bg: #ffffff; --bg-off: #f8fafc;
-      --grad: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
-      --grad-warm: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      --sky: #38bdf8;
+      --sky-deep: #0284c7;
+      --sky-ink: #075985;
+      --mist: #f0f9ff;
+      --mist-2: #e0f2fe;
+      --ink: #0f172a;
+      --soft: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --paper: #ffffff;
+      --off: #f8fafc;
+      --navy: #0b2540;
+      --amber: #f59e0b;
+      --mol: #0ea5e9;   /* molecular */
+      --cli: #6366f1;   /* clinical */
+      --pop: #14b8a6;   /* population */
+      --grad: linear-gradient(120deg, #38bdf8 0%, #0284c7 100%);
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--sky-deep); }
+    :focus-visible { outline: 2px solid var(--sky-deep); outline-offset: 3px; border-radius: 4px; }
 
-    /* ── NAV ── */
+    /* ───────── NAV ───────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 52px; padding: 0 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      position: fixed; inset: 0 0 auto 0; z-index: 100; height: 54px;
+      padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
-    .nav-name {
-      font-family: 'Lora', serif; font-size: 1rem; font-weight: 600;
-      letter-spacing: -0.01em; text-decoration: none;
-      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
-    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .18s; }
-    .nav-links a:hover { color: var(--blue); }
+    .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--grad); }
+    .nav-name { font-family: 'Lora', serif; font-weight: 600; font-size: 1.02rem; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a { font-size: .82rem; font-weight: 500; color: var(--muted); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; transition: color .18s, border-color .18s; }
+    .nav-links a:hover { color: var(--sky-deep); }
+    .nav-links a.active { color: var(--sky-deep); border-color: var(--sky); }
 
-    /* ── PAGE ── */
-    .page { max-width: 980px; margin: 0 auto; padding: 0 2.5rem; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 2.5rem; }
 
-    /* ── HERO ── */
-    #about {
-      padding: 112px 0 72px;
-      display: grid; grid-template-columns: 1fr 196px;
-      gap: 3rem; align-items: start;
-      position: relative;
+    /* ───────── HERO ───────── */
+    .hero { padding: 120px 0 40px; display: grid; grid-template-columns: 1fr 210px; gap: 3.5rem; align-items: start; }
+    .hero h1 {
+      font-family: 'Lora', serif; font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600;
+      letter-spacing: -.03em; line-height: 1.08; padding-bottom: .1em; margin-bottom: .3rem;
+      background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-    /* soft glow blob */
-    #about::after {
-      content: '';
-      position: absolute; top: 60px; right: -60px;
-      width: 560px; height: 560px; border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(79,70,229,.07) 0%, rgba(37,99,235,.04) 45%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-text { position: relative; z-index: 1; }
+    .hero .role { font-size: .95rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .hero .role strong { color: var(--sky-deep); font-weight: 600; }
+    .hero .bio { font-size: 1.04rem; color: var(--soft); line-height: 1.78; max-width: 62ch; margin-bottom: 1.5rem; }
+    .hero .bio strong { color: var(--ink); font-weight: 600; }
+    .links { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; font-size: .82rem; font-weight: 600; padding: 8px 15px; border-radius: 8px; text-decoration: none; transition: background .18s, border-color .18s, color .18s, transform .18s; }
+    .btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.9; }
+    .btn-solid { background: var(--sky-deep); color: #fff; }
+    .btn-solid:hover { background: var(--sky-ink); transform: translateY(-1px); }
+    .btn-line { border: 1px solid var(--line); color: var(--soft); }
+    .btn-line:hover { border-color: var(--sky); color: var(--sky-deep); background: var(--mist); }
+    .now { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.1rem; padding: 5px 13px 5px 9px; border-radius: 100px; background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: .78rem; font-weight: 600; }
+    .now i { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); animation: pulse 2.2s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(245,158,11,.25); } 50% { box-shadow: 0 0 0 7px rgba(245,158,11,.05); } }
 
-    /* "Now" status pill */
-    .now-pill {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--amber-light); border: 1px solid #fde68a;
-      border-radius: 100px; padding: 4px 12px 4px 8px;
-      font-size: 0.75rem; font-weight: 600; color: #92400e;
-      margin-bottom: 1.25rem; letter-spacing: 0.01em;
-    }
-    .now-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #f59e0b;
-      box-shadow: 0 0 0 3px rgba(245,158,11,.25);
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(245,158,11,.25); }
-      50% { box-shadow: 0 0 0 6px rgba(245,158,11,.08); }
+    .portrait { position: relative; width: 210px; height: 210px; }
+    .portrait::before { content: ''; position: absolute; inset: -10px; border-radius: 50%; background: conic-gradient(from 200deg, var(--mol), var(--cli), var(--pop), var(--mol)); opacity: .18; filter: blur(14px); }
+    .portrait-ring { position: relative; width: 100%; height: 100%; border-radius: 50%; padding: 4px; background: conic-gradient(from 200deg, var(--mol), var(--cli), var(--pop), var(--mol)); }
+    .portrait img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 3px solid #fff; display: block; }
+
+    /* ───────── SCALES BAND (signature) ───────── */
+    .scales { margin: 8px 0 72px; position: relative; }
+    .scales-intro { font-family: 'Lora', serif; font-size: 1.18rem; color: var(--soft); margin-bottom: 1.4rem; max-width: 60ch; }
+    .scales-intro em { font-style: italic; color: var(--ink); }
+    .scale-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; border-top: 1px solid var(--line); }
+    .scale-track::before { content: ''; position: absolute; top: -1px; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--mol), var(--cli), var(--pop)); transition: width 1.4s cubic-bezier(.6,.05,.25,1) .35s; }
+    .loaded .scale-track::before { width: 100%; }
+    .scale { padding: 1.4rem 1.6rem 0 0; position: relative; }
+    .scale + .scale { padding-left: 1.6rem; border-left: 1px solid var(--line); }
+    .scale-dot { position: absolute; top: -7px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 3px solid var(--c); }
+    .scale + .scale .scale-dot { left: 1.6rem; }
+    .scale-name { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: .2rem; }
+    .scale-name svg { width: 22px; height: 22px; stroke: var(--c); fill: none; stroke-width: 1.7; }
+    .scale-q { font-size: .9rem; color: var(--muted); margin-bottom: .8rem; line-height: 1.55; }
+    .scale ul { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+    .scale li a { font-size: .86rem; font-weight: 500; color: var(--soft); text-decoration: none; display: inline-flex; gap: 8px; align-items: baseline; }
+    .scale li a::before { content: ''; width: 6px; height: 6px; border-radius: 2px; background: var(--c); flex-shrink: 0; transform: translateY(-1px); }
+    .scale li a:hover { color: var(--c); }
+    .s-mol { --c: var(--mol); } .s-cli { --c: var(--cli); } .s-pop { --c: var(--pop); }
+
+    /* ───────── SECTION SHELL ───────── */
+    section.block { padding: 64px 0; border-top: 1px solid var(--line); }
+    section.tint { background: var(--off); }
+    .h2 { font-family: 'Lora', serif; font-size: 1.7rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: .35rem; display: flex; align-items: center; gap: 12px; }
+    .h2::before { content: ''; width: 6px; height: 1.3rem; border-radius: 3px; background: var(--grad); }
+    .h2-sub { color: var(--muted); font-size: .94rem; margin-bottom: 2rem; max-width: 66ch; }
+
+    /* ───────── NEWS ───────── */
+    .news { display: grid; grid-template-columns: 96px 1fr; row-gap: .7rem; column-gap: 1.5rem; max-width: 760px; }
+    .news dt { font-size: .82rem; font-weight: 600; color: var(--sky-deep); padding-top: 1px; white-space: nowrap; }
+    .news dd { font-size: .93rem; color: var(--soft); }
+    .news dd a { font-weight: 600; text-decoration: none; }
+    .news dd a:hover { text-decoration: underline; }
+
+    /* ───────── EDUCATION ───────── */
+    .edu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .edu-item { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem 1.5rem; }
+    .edu-when { font-size: .78rem; font-weight: 600; color: var(--muted); margin-bottom: .5rem; }
+    .edu-school { font-family: 'Lora', serif; font-size: 1.12rem; font-weight: 600; margin-bottom: .2rem; }
+    .edu-deg { font-size: .9rem; color: var(--soft); line-height: 1.5; margin-bottom: .6rem; }
+    .edu-gpa { display: inline-block; font-size: .76rem; font-weight: 700; color: var(--sky-ink); background: var(--mist-2); padding: 2px 9px; border-radius: 6px; margin-bottom: .7rem; margin-right: 4px; }
+    .edu-note { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+
+    /* ───────── PUBLICATIONS ───────── */
+    .pubs { display: flex; flex-direction: column; gap: 1.6rem; }
+    .pub { display: grid; grid-template-columns: 168px 1fr; gap: 1.6rem; align-items: start; }
+    .thumb { display: block; width: 168px; aspect-ratio: 16/11; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); transition: transform .2s, box-shadow .2s; }
+    .thumb:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(2,132,199,.14); }
+    .thumb svg { display: block; width: 100%; height: 100%; }
+    .pub-status { font-size: .74rem; font-weight: 700; margin-bottom: .3rem; }
+    .st-rev { color: #b45309; } .st-pub { color: #047857; } .st-poster { color: #6d28d9; }
+    .pub-title { font-family: 'Lora', serif; font-size: 1.06rem; font-weight: 600; line-height: 1.4; margin-bottom: .3rem; }
+    .pub-auth { font-size: .855rem; color: var(--muted); margin-bottom: .2rem; }
+    .pub-auth strong { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--sky); text-underline-offset: 3px; }
+    .pub-venue { font-size: .85rem; color: var(--muted); font-style: italic; margin-bottom: .6rem; }
+    .pub-role { font-style: normal; font-weight: 600; color: var(--soft); }
+    .chips-row { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .lk { font-size: .76rem; font-weight: 600; text-decoration: none; color: var(--sky-ink); padding: 3px 10px; border: 1px solid #bae6fd; background: var(--mist); border-radius: 6px; transition: background .15s; }
+    .lk:hover { background: var(--mist-2); }
+
+    /* ───────── PROJECTS ───────── */
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+    .filter { font: inherit; font-size: .8rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; border: 1px solid var(--line); background: #fff; color: var(--soft); cursor: pointer; transition: all .18s; display: inline-flex; align-items: center; gap: 7px; }
+    .filter i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--muted)); }
+    .filter[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    .proj { display: grid; grid-template-columns: 112px 1fr; gap: 1.75rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+    .proj:first-of-type { border-top: none; padding-top: .5rem; }
+    .proj[hidden] { display: none; }
+    .rail { font-size: .8rem; color: var(--muted); font-weight: 500; line-height: 1.5; position: relative; }
+    .rail .ongoing { display: inline-block; margin-top: .45rem; font-size: .7rem; font-weight: 700; color: #fff; background: var(--sky-deep); padding: 1px 8px; border-radius: 5px; }
+    .scale-tag { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 700; color: var(--c); margin-bottom: .35rem; }
+    .scale-tag i { width: 7px; height: 7px; border-radius: 2px; background: var(--c); }
+    .proj h3 { font-family: 'Lora', serif; font-size: 1.22rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; margin-bottom: .3rem; }
+    .proj-meta { font-size: .86rem; color: var(--sky-deep); font-weight: 600; margin-bottom: .7rem; }
+    .proj-meta span { color: var(--muted); font-weight: 500; }
+    .lede { font-size: .95rem; color: var(--soft); line-height: 1.72; max-width: 72ch; margin-bottom: .9rem; }
+    .kpis { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .kpi { display: inline-flex; align-items: baseline; gap: 6px; font-size: .8rem; color: var(--soft); background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; }
+    .kpi b { font-size: .95rem; color: var(--ink); font-weight: 700; }
+    .toggle { font: inherit; font-size: .82rem; font-weight: 600; color: var(--sky-deep); background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; }
+    .toggle svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; transition: transform .3s; }
+    .proj.open .toggle svg { transform: rotate(180deg); }
+    .detail { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s ease; }
+    .proj.open .detail { grid-template-rows: 1fr; }
+    .detail > div { overflow: hidden; }
+    .detail-inner { padding-top: 1.4rem; }
+
+    /* pipeline */
+    .flow-label { font-size: .8rem; font-weight: 700; color: var(--muted); margin: 0 0 .7rem; }
+    .flow { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 22px; margin-bottom: 1.2rem; position: relative; }
+    .node { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: .75rem .8rem .8rem; min-width: 0; opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease; transition-delay: calc(var(--i) * 70ms); }
+    .proj.open .node { opacity: 1; transform: none; }
+    .node:not(:last-child)::after { content: ''; position: absolute; right: -16px; top: 50%; width: 9px; height: 9px; border-top: 2px solid var(--sky); border-right: 2px solid var(--sky); transform: translateY(-50%) rotate(45deg); }
+    .node .n { width: 20px; height: 20px; border-radius: 50%; background: var(--mist-2); color: var(--sky-ink); font-size: .68rem; font-weight: 700; display: grid; place-items: center; margin-bottom: .4rem; }
+    .node b { display: block; font-size: .82rem; font-weight: 700; line-height: 1.3; margin-bottom: .2rem; }
+    .node span { display: block; font-size: .75rem; color: var(--muted); line-height: 1.45; }
+    .node.key { border-color: var(--sky); background: var(--mist); }
+    .node.key .n { background: var(--sky-deep); color: #fff; }
+    .loop { grid-column: var(--from) / var(--to); grid-row: 2; margin: -10px 0 26px; height: 30px; border: 2px dashed var(--sky); border-top: none; border-radius: 0 0 14px 14px; position: relative; }
+    .loop span { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); padding: 0 10px; font-size: .74rem; font-weight: 700; color: var(--sky-ink); white-space: nowrap; }
+    .loop::before { content: ''; position: absolute; left: -6px; top: -4px; border: 5px solid transparent; border-bottom: 7px solid var(--sky); }
+
+    .dgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin: 1.2rem 0 .4rem; }
+    .dcol h4 { font-size: .82rem; font-weight: 700; color: var(--ink); margin-bottom: .4rem; display: flex; align-items: center; gap: 7px; }
+    .dcol h4::before { content: ''; width: 14px; height: 2px; background: var(--sky); border-radius: 2px; }
+    .dcol p, .dcol li { font-size: .86rem; color: var(--soft); line-height: 1.65; }
+    .dcol ul { padding-left: 1.05rem; display: flex; flex-direction: column; gap: .3rem; }
+    .tagset { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+    .tg { font-size: .74rem; font-weight: 500; color: var(--soft); background: var(--off); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; }
+    .tg.warn { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+
+    /* results chart */
+    .bars { margin-top: 1rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.25rem; max-width: 640px; }
+    .bars-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .8rem; gap: 1rem; flex-wrap: wrap; }
+    .bars-head b { font-size: .86rem; }
+    .legend { display: flex; gap: 1rem; font-size: .74rem; color: var(--muted); }
+    .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+    .bar-row { display: grid; grid-template-columns: 112px 1fr; gap: .8rem; align-items: center; margin-bottom: .6rem; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-row > span { font-size: .82rem; font-weight: 600; color: var(--soft); }
+    .bar-pair { display: flex; flex-direction: column; gap: 4px; }
+    .bar { height: 14px; border-radius: 4px; width: 0; transition: width .9s cubic-bezier(.3,.7,.3,1) .25s; position: relative; }
+    .proj.open .bar { width: var(--w); }
+    .bar em { position: absolute; left: calc(100% + 6px); top: -2px; font-style: normal; font-size: .72rem; font-weight: 700; color: var(--soft); white-space: nowrap; }
+    .bar.ppv { background: var(--sky); } .bar.f1 { background: var(--sky-ink); }
+    .big-stats { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+    .big { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1.2rem; min-width: 170px; }
+    .big b { display: block; font-family: 'Lora', serif; font-size: 1.9rem; font-weight: 600; color: var(--sky-deep); line-height: 1.1; }
+    .big span { font-size: .8rem; color: var(--muted); }
+
+    .paper-fig { margin-top: 1.2rem; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; max-width: 820px; }
+    .paper-fig img { width: 100%; display: block; }
+    .paper-fig figcaption { font-size: .78rem; color: var(--muted); padding: .55rem .9rem; border-top: 1px solid var(--line); }
+
+    .more { margin-top: 2.2rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+    .more h3 { font-size: .9rem; font-weight: 700; color: var(--soft); margin-bottom: .8rem; }
+    .more-item { display: grid; grid-template-columns: 112px 1fr; gap: 1.75rem; padding: .45rem 0; font-size: .88rem; }
+    .more-item time { color: var(--muted); font-size: .8rem; }
+    .more-item b { font-weight: 600; }
+    .more-item span { color: var(--muted); }
+
+    /* work */
+    .work { display: grid; grid-template-columns: 112px 1fr; gap: 1.75rem; }
+    .work h3 { font-family: 'Lora', serif; font-size: 1.12rem; font-weight: 600; margin-bottom: .2rem; }
+
+    /* ───────── CONTACT ───────── */
+    #contact { background: var(--navy); color: #fff; border-top: none; padding: 72px 0 64px; position: relative; overflow: hidden; }
+    #contact::before { content: ''; position: absolute; right: -120px; top: -160px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(56,189,248,.22), transparent 65%); }
+    #contact .h2 { color: #fff; }
+    #contact .h2-sub { color: rgba(255,255,255,.6); }
+    .cgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; max-width: 720px; position: relative; }
+    .ccard { display: flex; align-items: center; gap: 13px; padding: .9rem 1.1rem; border-radius: 12px; text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); transition: background .18s, border-color .18s, transform .18s; }
+    .ccard:hover { background: rgba(56,189,248,.12); border-color: rgba(56,189,248,.5); transform: translateY(-1px); }
+    .cicon { width: 38px; height: 38px; border-radius: 10px; background: rgba(56,189,248,.15); display: grid; place-items: center; flex-shrink: 0; }
+    .cicon svg { width: 17px; height: 17px; stroke: var(--sky); fill: none; stroke-width: 1.8; }
+    .clabel { font-size: .74rem; color: rgba(255,255,255,.5); }
+    .cval { font-size: .9rem; font-weight: 600; }
+    footer { background: #071a2e; color: rgba(255,255,255,.4); text-align: center; font-size: .78rem; padding: 1.2rem; }
+
+    /* ───────── HERO LOAD (one orchestrated moment) ───────── */
+    .intro { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease; }
+    .loaded .intro { opacity: 1; transform: none; }
+    .loaded .intro.d1 { transition-delay: .08s; } .loaded .intro.d2 { transition-delay: .18s; } .loaded .intro.d3 { transition-delay: .28s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .intro, .node { opacity: 1; transform: none; }
     }
 
-    .hero-text h1 {
-      font-family: 'Lora', serif; font-size: 2.8rem; font-weight: 600;
-      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 0.35rem;
-      padding-bottom: 0.1em;
-      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    /* ───────── RESPONSIVE ───────── */
+    @media (max-width: 860px) {
+      .flow { grid-template-columns: 1fr; gap: 16px; }
+      .node:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -13px; transform: translateX(-50%) rotate(135deg); }
+      .loop { display: none; }
+      .loop-note { display: block !important; }
+      .dgrid { grid-template-columns: 1fr; }
     }
-    .hero-text .affil {
-      font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.35rem;
-      display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
-    }
-    .affil-sep { color: var(--border); }
-    .affil strong { color: var(--blue); font-weight: 600; }
-    .hero-text .bio { font-size: 0.97rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 0.75rem; }
-    .hero-text .bio strong { color: var(--text); font-weight: 600; }
-
-    /* interest chips */
-    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 1.25rem 0 1.5rem; }
-    .chip {
-      font-size: 0.73rem; font-weight: 500; padding: 3px 11px; border-radius: 100px;
-      background: var(--blue-faint); color: var(--blue);
-      border: 1px solid rgba(37,99,235,.15); letter-spacing: .01em;
-      transition: background .15s;
-    }
-    .chip:hover { background: var(--blue-light); }
-
-    .hero-actions { display: flex; gap: 0.55rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 600; padding: 7px 15px; border-radius: 7px; text-decoration: none; transition: all .18s; letter-spacing: .01em; }
-    .btn-primary { background: var(--grad); color: #fff; box-shadow: 0 2px 10px rgba(37,99,235,.3); }
-    .btn-primary:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,.35); }
-    .btn-ghost { background: transparent; color: var(--text-soft); border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-faint); }
-
-    /* avatar with gradient ring */
-    .avatar-wrap { display: flex; justify-content: center; padding-top: 2px; position: relative; z-index: 1; }
-    .avatar-ring { width: 185px; height: 185px; border-radius: 50%; padding: 3px; background: var(--grad); flex-shrink: 0; }
-    .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 2px solid #fff; display: block; }
-
-    /* ── DIVIDER ── */
-    .divider { border: none; border-top: 1px solid var(--border); }
-
-    /* ── SECTION SHELL ── */
-    section { padding: 56px 0; }
-    section.alt { background: var(--bg-off); }
-    section.alt .page { }
-    .eyebrow {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--blue); margin-bottom: .45rem;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .eyebrow::before { content: ''; display: block; width: 18px; height: 2px; background: var(--grad); border-radius: 2px; }
-    .section-h { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 2rem; }
-
-    /* ── PUBLICATIONS ── editorial numbered list ── */
-    .pub-list { display: flex; flex-direction: column; gap: 0; }
-    .pub-row {
-      display: grid; grid-template-columns: 56px 1fr;
-      gap: 0 1.5rem; padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      transition: background .15s;
-    }
-    .pub-row:first-child { padding-top: 0; }
-    .pub-row:last-child { border-bottom: none; }
-    .pub-num {
-      font-family: 'Lora', serif; font-size: 1.9rem; font-weight: 600;
-      color: var(--border); line-height: 1; padding-top: 4px;
-      user-select: none;
-    }
-    .pub-right {}
-    .pub-status-row { display: flex; align-items: center; gap: 8px; margin-bottom: 0.45rem; flex-wrap: wrap; }
-    .pub-badge {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: .06em;
-      text-transform: uppercase; padding: 2px 8px; border-radius: 4px;
-    }
-    .badge-revision { background: #fef3c7; color: #92400e; }
-    .badge-published { background: #d1fae5; color: #065f46; }
-    .badge-poster { background: #ede9fe; color: #5b21b6; }
-    .pub-title {
-      font-family: 'Lora', serif; font-size: 1rem; font-weight: 600;
-      line-height: 1.4; color: var(--text); margin-bottom: .3rem;
-    }
-    .pub-authors { font-size: 0.845rem; color: var(--text-muted); margin-bottom: .2rem; }
-    .pub-authors strong { color: var(--text-soft); font-weight: 600; }
-    .pub-venue { font-size: 0.83rem; color: var(--text-muted); font-style: italic; margin-bottom: .55rem; }
-    .pub-links { display: flex; gap: .65rem; }
-    .pub-link {
-      font-size: 0.76rem; font-weight: 600; color: var(--blue);
-      text-decoration: none; display: flex; align-items: center; gap: 3px;
-      padding: 3px 9px; border-radius: 5px; border: 1px solid rgba(37,99,235,.2);
-      background: var(--blue-faint); transition: background .15s;
-    }
-    .pub-link:hover { background: var(--blue-light); }
-    .pub-link svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-    /* ── EDUCATION ── */
-    .edu-list { display: flex; flex-direction: column; gap: 1.5rem; }
-    .edu-item {
-      display: grid; grid-template-columns: 108px 1fr;
-      gap: 0 1.5rem; padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .edu-years { font-size: 0.78rem; color: var(--text-muted); padding-top: 3px; line-height: 1.5; }
-    .edu-degree { font-weight: 600; font-size: 0.95rem; line-height: 1.35; margin-bottom: 3px; }
-    .edu-school { font-size: 0.845rem; color: var(--blue); font-weight: 600; margin-bottom: .3rem; }
-    .edu-detail { font-size: 0.845rem; color: var(--text-muted); line-height: 1.6; }
-
-    /* ── TIMELINE (Experience) ── */
-    .timeline { position: relative; padding-left: 1.75rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 4px; top: 6px; bottom: 6px;
-      width: 1.5px;
-      background: linear-gradient(to bottom, var(--blue), var(--indigo), rgba(79,70,229,.1));
-    }
-    .tl-item {
-      position: relative; padding-bottom: 2rem;
-    }
-    .tl-item:last-child { padding-bottom: 0; }
-    /* timeline dot */
-    .tl-item::before {
-      content: ''; position: absolute;
-      left: -1.57rem; top: 5px;
-      width: 11px; height: 11px; border-radius: 50%;
-      background: white; border: 2px solid var(--blue);
-      transition: background .2s;
-    }
-    .tl-item.current::before { background: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.2); }
-    .tl-date { font-size: 0.76rem; color: var(--text-muted); font-weight: 500; margin-bottom: .25rem; display: flex; align-items: center; gap: 6px; }
-    .tl-date .current-tag { font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--blue); color: white; padding: 1px 6px; border-radius: 4px; }
-    .tl-role { font-weight: 600; font-size: .95rem; line-height: 1.35; color: var(--text); margin-bottom: 2px; }
-    .tl-org { font-size: .84rem; color: var(--blue); font-weight: 500; margin-bottom: .4rem; }
-    .tl-desc { font-size: .855rem; color: var(--text-soft); line-height: 1.7; }
-
-    /* selected additional */
-    .additional-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin: 2rem 0 .75rem; display: flex; align-items: center; gap: 7px; }
-    .additional-label::before { content: ''; width: 14px; height: 1.5px; background: var(--border); display: block; }
-    .additional-chips { display: flex; flex-direction: column; gap: .4rem; }
-    .add-chip { font-size: .845rem; color: var(--text-soft); padding: .5rem .9rem; background: var(--bg-off); border: 1px solid var(--border); border-radius: 8px; line-height: 1.5; }
-    .add-chip strong { color: var(--blue); font-weight: 600; }
-
-    /* ── CONTACT (dark) ── */
-    #contact {
-      background: var(--text); /* dark */
-      padding: 64px 0 56px;
-    }
-    #contact .eyebrow { color: rgba(255,255,255,.4); }
-    #contact .eyebrow::before { background: rgba(255,255,255,.2); }
-    #contact .section-h { color: white; margin-bottom: .5rem; }
-    #contact .contact-sub { font-size: .97rem; color: rgba(255,255,255,.5); margin-bottom: 2rem; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
-    .contact-card {
-      display: flex; align-items: center; gap: 12px;
-      padding: .85rem 1.1rem; border-radius: 10px;
-      text-decoration: none; color: rgba(255,255,255,.85);
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.05);
-      transition: background .18s, border-color .18s, transform .18s;
-    }
-    .contact-card:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.25); transform: translateY(-1px); }
-    .contact-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .contact-icon svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 1.8; }
-    .contact-label { font-size: .71rem; color: rgba(255,255,255,.4); font-weight: 500; letter-spacing: .03em; }
-    .contact-value { font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.9); }
-
-    /* ── FOOTER ── */
-    footer { background: #080f1f; padding: 1.25rem 2.5rem; text-align: center; font-size: .78rem; color: rgba(255,255,255,.25); }
-    footer span { color: rgba(255,255,255,.45); }
-
-    /* ── FADE-IN ── */
-    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 640px) {
-      #about { grid-template-columns: 1fr; gap: 2rem; }
-      .avatar-wrap { order: -1; justify-content: flex-start; }
-      .avatar-ring { width: 100px; height: 100px; }
-      .hero-text h1 { font-size: 2rem; }
-      .pub-row { grid-template-columns: 36px 1fr; }
-      .edu-item { grid-template-columns: 1fr; gap: 0.2rem; }
-      .contact-grid { grid-template-columns: 1fr; }
+    @media (max-width: 720px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.1rem; overflow-x: auto; max-width: 62vw; scrollbar-width: none; }
+      .nav-links a { white-space: nowrap; }
+      .wrap { padding: 0 1.25rem; }
+      .hero { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 96px; }
+      .portrait { order: -1; width: 120px; height: 120px; }
+      .scale-track { grid-template-columns: 1fr; }
+      .scale, .scale + .scale { padding: 1.2rem 0 0; border-left: none; }
+      .scale + .scale { border-top: 1px solid var(--line); margin-top: 1rem; }
+      .scale + .scale .scale-dot { left: 0; }
+      .edu, .cgrid { grid-template-columns: 1fr; }
+      .pub { grid-template-columns: 1fr; gap: .8rem; }
+      .thumb { width: 100%; max-width: 320px; }
+      .proj, .more-item, .work { grid-template-columns: 1fr; gap: .4rem; }
+      .news { grid-template-columns: 1fr; row-gap: .15rem; }
+      .news dd { margin-bottom: .6rem; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-name" href="#">Sihan Jiang</a>
+<nav aria-label="Main">
+  <a class="nav-name" href="#top">Sihan Jiang</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
+    <li><a href="#top">About</a></li>
+    <li><a href="#news">News</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#publications">Research</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -273,271 +289,560 @@
     <!-- <li><a href="beyond.html">Beyond</a></li> -->
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="progress" aria-hidden="true"></div>
 </nav>
 
-<main>
+<main id="top">
 
-<!-- ── ABOUT ── -->
-<div class="page">
-<section id="about">
-  <div class="hero-text fade-in">
-    <h1>Sihan Jiang</h1>
-    <p class="affil">
-      M.S. Biostatistics <span class="affil-sep">·</span>
-      <strong>Yale University</strong>
-      <span class="affil-sep">·</span> New Haven, CT
-    </p>
-    <p class="bio">
-      I design and evaluate <strong>AI/ML systems for biomedical applications</strong> —
-      from LLM-powered clinical agents and drug discovery benchmarks to
-      AI-driven interventions that work across cultures and real-world populations.
-      I care about building systems that are rigorous, inclusive, and actually useful.
-    </p>
-    <div class="chips">
-      <span class="chip">Health AI</span>
-      <span class="chip">LLM Agents</span>
-      <span class="chip">Drug Discovery</span>
-      <span class="chip">EHR Phenotyping</span>
-      <span class="chip">Digital Health</span>
-      <span class="chip">Precision Medicine</span>
-    </div>
-    <div class="hero-actions">
-      <a href="mailto:sihan.jiang@yale.edu" class="btn btn-primary">Email Me</a>
-      <a href="https://scholar.google.com/citations?hl=en&user=kggQUlIAAAAJ" target="_blank" class="btn btn-ghost">Scholar</a>
-      <a href="https://github.com/JennyJiang526" target="_blank" class="btn btn-ghost">GitHub</a>
-      <a href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" class="btn btn-ghost">LinkedIn</a>
-    </div>
-    <div class="now-pill" style="margin-top:1rem;margin-bottom:0;">
-      <span class="now-dot"></span>
-      Applying for PhD programs · Fall 2027
-    </div>
-  </div>
-  <div class="avatar-wrap fade-in" style="transition-delay:.12s">
-    <div class="avatar-ring">
-      <img src="photo.jpg" alt="Sihan Jiang" class="avatar" />
-    </div>
-  </div>
-</section>
-</div>
-
-<hr class="divider" />
-
-<!-- ── EDUCATION ── -->
-<section id="education" class="alt">
-<div class="page fade-in">
-  <p class="eyebrow">Education</p>
-  <h2 class="section-h">Education</h2>
-  <div class="edu-list">
-    <div class="edu-item">
-      <div class="edu-years">08/2025 – Present</div>
+  <!-- ═════════ HERO ═════════ -->
+  <div class="wrap">
+    <header class="hero">
       <div>
-        <div class="edu-degree">M.S. in Biostatistics (Data Science Pathway)</div>
-        <div class="edu-school">Yale University · GPA 3.89 / 4.00</div>
-        <div class="edu-detail">Coursework: Large Language Models, Intermediate Machine Learning, Biomedical Data Science: Mining and Modeling, Linear Models.</div>
+        <h1 class="intro">Sihan Jiang</h1>
+        <p class="role intro d1">M.S. student in Biostatistics (Data Science), <strong>Yale University</strong>, New Haven</p>
+        <p class="bio intro d2">
+          I build and evaluate <strong>AI systems for biomedicine</strong>, and I care most about whether they hold up outside the benchmark.
+          My work has asked how well language models understand drugs, whether LLM agents can turn clinical rules into working queries on real hospital records,
+          and how AI health tools can be shaped for the communities that use them.
+        </p>
+        <div class="links intro d3">
+          <a class="btn btn-solid" href="mailto:sihan.jiang@yale.edu">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email me</a>
+          <a class="btn btn-line" href="https://scholar.google.com/citations?hl=en&user=kggQUlIAAAAJ" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg>Google Scholar</a>
+          <a class="btn btn-line" href="https://github.com/JennyJiang526" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+          <a class="btn btn-line" href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        </div>
+        <div class="now intro d3"><i></i>Applying to PhD programs for Fall 2027</div>
       </div>
-    </div>
-    <div class="edu-item">
-      <div class="edu-years">08/2021 – 05/2025</div>
-      <div>
-        <div class="edu-degree">B.S. Applied Mathematics &amp; CS (DKU)<br/>B.S. Interdisciplinary Studies — CS; Applied Math (Duke)</div>
-        <div class="edu-school">Duke Kunshan University &amp; Duke University · GPA 3.81 / 4.00 · Cum Laude</div>
-        <div class="edu-detail">Latin Honors; Dean's List (Fall 2021, Spring 2022, Spring 2024).<br/>Coursework: Principles of Machine Learning, Algorithms, Cell and Molecular Biology, Integrated Science – Chemistry.</div>
+      <div class="portrait intro d1">
+        <div class="portrait-ring"><img src="photo.jpg" alt="Portrait of Sihan Jiang" /></div>
       </div>
-    </div>
-  </div>
-</div>
-</section>
+    </header>
 
-<hr class="divider" />
-
-<!-- ── PUBLICATIONS ── -->
-<section id="publications">
-<div class="page fade-in">
-  <p class="eyebrow">Research</p>
-  <h2 class="section-h">Publications &amp; Presentations</h2>
-  <div class="pub-list">
-
-    <div class="pub-row">
-      <div class="pub-num">01</div>
-      <div class="pub-right">
-        <div class="pub-status-row">
-          <span class="pub-badge badge-revision">Nature · Under Revision</span>
+    <!-- Signature: research across three scales -->
+    <div class="scales" aria-label="Research areas">
+      <p class="scales-intro intro d3">My research spans three scales of biomedicine — <em>from the molecule, to the clinic, to the population.</em></p>
+      <div class="scale-track">
+        <div class="scale s-mol">
+          <span class="scale-dot"></span>
+          <div class="scale-name"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8.3 8.2l2.4 6.6M15.7 8.2l-2.4 6.6M8.5 7h7"/></svg>Molecule</div>
+          <p class="scale-q">Do language models capture what matters about a drug, and can AI agents reason about drug safety?</p>
+          <ul>
+            <li><a href="#p-drug">DrugPlayGround benchmark</a></li>
+            <li><a href="#p-sci">SciAgentArena drug-safety tasks</a></li>
+            <li><a href="#p-vdj">VDJbase immune repertoire pipeline</a></li>
+          </ul>
         </div>
-        <div class="pub-title">Benchmarking AI Agents for Addressing Scientific Challenges Across Scales</div>
-        <div class="pub-authors">Liu, T., Wang, A. X., Panescu, A., Chen, L. X., Long, W., Wei, X., Jing, Y., Zeng, Z., Chen, J., <strong>Jiang, S.</strong>, et al., Xu, H., &amp; Zhao, H.</div>
-        <div class="pub-venue">Manuscript under revision at Nature, 2026 — Task Contributor; Equal Contribution</div>
-        <div class="pub-links">
-          <a href="https://arxiv.org/abs/2606.12736" target="_blank" class="pub-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Preprint</a>
+        <div class="scale s-cli">
+          <span class="scale-dot"></span>
+          <div class="scale-name"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v2h6V3M12 9v6M9 12h6"/></svg>Clinic</div>
+          <p class="scale-q">Can LLM agents work reliably with real patient records and clinical-trial criteria?</p>
+          <ul>
+            <li><a href="#p-pheno">Clinical AI agents for EHR phenotyping</a></li>
+            <li><a href="#p-trial">Synthetic cohorts for trial matching</a></li>
+          </ul>
         </div>
-      </div>
-    </div>
-
-    <div class="pub-row">
-      <div class="pub-num">02</div>
-      <div class="pub-right">
-        <div class="pub-status-row">
-          <span class="pub-badge badge-revision">npj Drug Discovery · Under Revision</span>
-        </div>
-        <div class="pub-title">DrugPlayGround: Benchmarking Large Language Models and Embeddings for Drug Discovery</div>
-        <div class="pub-authors">Liu, T., <strong>Jiang, S.</strong>, Zhang, F., Sun, K., Head-Gordon, T., &amp; Zhao, H.</div>
-        <div class="pub-venue">Manuscript under revision at npj Drug Discovery, 2026 — Co-First Authors</div>
-        <div class="pub-links">
-          <a href="https://arxiv.org/abs/2604.02346" target="_blank" class="pub-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Preprint</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="pub-row">
-      <div class="pub-num">03</div>
-      <div class="pub-right">
-        <div class="pub-status-row">
-          <span class="pub-badge badge-published">IEEE EMBC 2025</span>
-        </div>
-        <div class="pub-title">Diabetes Prevention Chatbots to Help Dietary Self-Management for the Chinese Population</div>
-        <div class="pub-authors"><strong>Jiang, S.</strong>, &amp; Huang, M. C.</div>
-        <div class="pub-venue">2025 Annual International Conference of the IEEE Engineering in Medicine and Biology Society, 1–7 — First Author</div>
-        <div class="pub-links">
-          <a href="https://doi.org/10.1109/EMBC58623.2025.11254311" target="_blank" class="pub-link"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>DOI</a>
+        <div class="scale s-pop">
+          <span class="scale-dot"></span>
+          <div class="scale-name"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c0-2.5 1.3-4.5 3-4.5s4 1.5 4 4.5"/></svg>Population</div>
+          <p class="scale-q">Does health AI reach the people who need it, in a form that fits their culture?</p>
+          <ul>
+            <li><a href="#p-chat">Diabetes prevention chatbots</a></li>
+            <li><a href="#more">AI in cancer care: a systematic review</a></li>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="pub-row">
-      <div class="pub-num">04</div>
-      <div class="pub-right">
-        <div class="pub-status-row">
-          <span class="pub-badge badge-poster">CUGH 2024 · Poster</span>
+  <!-- ═════════ NEWS ═════════ -->
+  <section class="block" id="news">
+    <div class="wrap">
+      <h2 class="h2">News</h2>
+      <p class="h2-sub">Recent milestones.</p>
+      <dl class="news">
+        <dt>Sep 2026</dt><dd>Wrapped up summer research with the Boussard Lab at Stanford on <a href="#p-trial">synthetic cohorts for AI trial matching</a>.</dd>
+        <dt>Jul 2026</dt><dd>Started remote research at Stanford with Prof. Tina Hernandez-Boussard.</dd>
+        <dt>Jun 2026</dt><dd><a href="https://arxiv.org/abs/2606.12736" target="_blank" rel="noopener">SciAgentArena</a> is on arXiv, a benchmark of ~200 real research tasks for AI agents. Now under revision at <i>Nature</i>.</dd>
+        <dt>May 2026</dt><dd>Joined Prof. Hua Xu's lab at Yale to build <a href="#p-pheno">LLM agents for EHR phenotyping</a>.</dd>
+        <dt>Feb 2026</dt><dd><a href="https://arxiv.org/abs/2604.02346" target="_blank" rel="noopener">DrugPlayGround</a> is on arXiv (co-first author), now accepted at <i>npj Drug Discovery</i>.</dd>
+        <dt>Aug 2025</dt><dd>Started my M.S. in Biostatistics at Yale.</dd>
+        <dt>2025</dt><dd>First-author paper on <a href="#p-chat">diabetes prevention chatbots</a> published at IEEE EMBC 2025.</dd>
+        <dt>May 2025</dt><dd>Graduated cum laude from Duke Kunshan University and Duke University.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═════════ EDUCATION ═════════ -->
+  <section class="block tint" id="education">
+    <div class="wrap">
+      <h2 class="h2">Education</h2>
+      <p class="h2-sub">Trained across computer science, applied math, and biostatistics, on two continents.</p>
+      <div class="edu">
+        <div class="edu-item">
+          <div class="edu-when">08/2025 – Present</div>
+          <div class="edu-school">Yale University</div>
+          <div class="edu-deg">M.S. in Biostatistics, Data Science Pathway</div>
+          <span class="edu-gpa">GPA 3.89 / 4.00</span>
+          <p class="edu-note">Coursework: Large Language Models, Intermediate Machine Learning, Biomedical Data Science: Mining and Modeling, Linear Models.</p>
         </div>
-        <div class="pub-title">Factors Included in AI Algorithms Assisting Precision Medicine in Cancer Treatment: A Systematic Review</div>
-        <div class="pub-authors"><strong>Jiang, S.</strong>, Shen, J., &amp; Chen, M.</div>
-        <div class="pub-venue">2024 Consortium of Universities for Global Health (CUGH) Conference, Los Angeles — Co-First Authors; Presenter</div>
-        <div class="pub-links">
-          <a href="CUGH Poster.pdf" target="_blank" class="pub-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Poster</a>
+        <div class="edu-item">
+          <div class="edu-when">08/2021 – 05/2025</div>
+          <div class="edu-school">Duke Kunshan University &amp; Duke University</div>
+          <div class="edu-deg">B.S. in Applied Mathematics &amp; Computational Science / Computer Science (DKU)<br/>B.S. in Interdisciplinary Studies: CS; Applied Math &amp; Computational Science (Duke)</div>
+          <span class="edu-gpa">GPA 3.81 / 4.00</span><span class="edu-gpa">Cum Laude</span>
+          <p class="edu-note">Dean's List (Fall 2021, Spring 2022, Spring 2024).<br/>Coursework: Principles of Machine Learning, Design &amp; Analysis of Algorithms, Cell and Molecular Biology, Integrated Science – Chemistry.</p>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</div>
-</section>
+  <!-- ═════════ PUBLICATIONS ═════════ -->
+  <section class="block" id="publications">
+    <div class="wrap">
+      <h2 class="h2">Publications &amp; presentations</h2>
+      <p class="h2-sub">Underlined name marks my authorship.</p>
+      <div class="pubs">
 
-<hr class="divider" />
+        <article class="pub">
+          <a class="thumb" href="https://arxiv.org/abs/2606.12736" target="_blank" rel="noopener" aria-label="SciAgentArena preprint">
+            <svg viewBox="0 0 168 116" role="img" aria-hidden="true">
+              <rect width="168" height="116" fill="#eef2ff"/>
+              <g fill="#c7d2fe">
+                <rect x="14" y="16" width="16" height="16" rx="3"/><rect x="36" y="16" width="16" height="16" rx="3"/><rect x="58" y="16" width="16" height="16" rx="3" fill="#6366f1"/><rect x="80" y="16" width="16" height="16" rx="3"/><rect x="102" y="16" width="16" height="16" rx="3" fill="#38bdf8"/><rect x="124" y="16" width="16" height="16" rx="3"/>
+                <rect x="14" y="38" width="16" height="16" rx="3" fill="#38bdf8"/><rect x="36" y="38" width="16" height="16" rx="3"/><rect x="58" y="38" width="16" height="16" rx="3"/><rect x="80" y="38" width="16" height="16" rx="3" fill="#6366f1"/><rect x="102" y="38" width="16" height="16" rx="3"/><rect x="124" y="38" width="16" height="16" rx="3"/>
+                <rect x="14" y="60" width="16" height="16" rx="3"/><rect x="36" y="60" width="16" height="16" rx="3" fill="#6366f1"/><rect x="58" y="60" width="16" height="16" rx="3"/><rect x="80" y="60" width="16" height="16" rx="3"/><rect x="102" y="60" width="16" height="16" rx="3"/><rect x="124" y="60" width="16" height="16" rx="3" fill="#38bdf8"/>
+              </g>
+              <text x="14" y="102" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="#3730a3">SciAgentArena</text>
+            </svg>
+          </a>
+          <div>
+            <div class="pub-status st-rev">Nature · under revision</div>
+            <h3 class="pub-title">Benchmarking AI Agents for Addressing Scientific Challenges Across Scales</h3>
+            <p class="pub-auth">Liu, T., Wang, A. X., Panescu, A., Chen, L. X., Long, W., Wei, X., Jing, Y., Zeng, Z., Chen, J., <strong>Jiang, S.</strong>, et al., Xu, H., &amp; Zhao, H.</p>
+            <p class="pub-venue">Manuscript under revision at Nature, 2026. <span class="pub-role">Task contributor, equal contribution.</span></p>
+            <div class="chips-row">
+              <a class="lk" href="https://arxiv.org/abs/2606.12736" target="_blank" rel="noopener">Preprint</a>
+              <a class="lk" href="https://sciagentarena.github.io/" target="_blank" rel="noopener">Website</a>
+              <a class="lk" href="#p-sci">My contribution</a>
+            </div>
+          </div>
+        </article>
 
-<!-- ── EXPERIENCE ── -->
-<section id="experience" class="alt">
-<div class="page fade-in">
-  <p class="eyebrow">Background</p>
-  <h2 class="section-h">Research Experience</h2>
-  <div class="timeline">
+        <article class="pub">
+          <a class="thumb" href="https://arxiv.org/abs/2604.02346" target="_blank" rel="noopener" aria-label="DrugPlayGround preprint">
+            <svg viewBox="0 0 168 116" role="img" aria-hidden="true">
+              <rect width="168" height="116" fill="#f0f9ff"/>
+              <g stroke="#0284c7" stroke-width="2.2" fill="none">
+                <polygon points="44,22 62,32 62,52 44,62 26,52 26,32"/>
+                <line x1="62" y1="32" x2="80" y2="22"/><line x1="80" y1="22" x2="98" y2="32"/>
+                <polygon points="98,32 116,22 134,32 134,52 116,62 98,52" stroke="#38bdf8"/>
+                <line x1="44" y1="62" x2="44" y2="76"/>
+              </g>
+              <circle cx="44" cy="80" r="4" fill="#38bdf8"/><circle cx="80" cy="22" r="4" fill="#0284c7"/>
+              <g fill="#bae6fd"><rect x="74" y="70" width="70" height="5" rx="2.5"/><rect x="74" y="80" width="54" height="5" rx="2.5"/></g>
+              <text x="14" y="104" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="#075985">DrugPlayGround</text>
+            </svg>
+          </a>
+          <div>
+            <div class="pub-status st-pub">npj Drug Discovery · accepted</div>
+            <h3 class="pub-title">DrugPlayGround: Benchmarking Large Language Models and Embeddings for Drug Discovery</h3>
+            <p class="pub-auth">Liu, T., <strong>Jiang, S.</strong>, Zhang, F., Sun, K., Head-Gordon, T., &amp; Zhao, H.</p>
+            <p class="pub-venue">Accepted at npj Drug Discovery, 2026. <span class="pub-role">Co-first author.</span></p>
+            <div class="chips-row">
+              <a class="lk" href="https://arxiv.org/abs/2604.02346" target="_blank" rel="noopener">Preprint</a>
+              <a class="lk" href="#p-drug">Project details</a>
+            </div>
+          </div>
+        </article>
 
-    <div class="tl-item current">
-      <div class="tl-date">05/2026 – Present <span class="current-tag">Current</span></div>
-      <div class="tl-role">LLM-based Clinical AI Agents for EHR Phenotyping</div>
-      <div class="tl-org">Research Assistant · Prof. Hua Xu, Yale University</div>
-      <div class="tl-desc">Implemented eMERGE algorithms for T2DM, Dementia, and Hypothyroidism using DuckDB and SQL on YNHH OMOP data. Developed GPT-5.4 pipelines with alpha/beta/standard prompts, tool calling, and disease-specific skills to generate phenotyping SQL queries. Achieved unlabeled-inclusive PPV / F1 of 74.5% / 80.0% (T2DM), 73.2% / 75.3% (Dementia), 15.1% / 26.0% (Hypothyroidism).</div>
+        <article class="pub">
+          <a class="thumb" href="https://doi.org/10.1109/EMBC58623.2025.11254311" target="_blank" rel="noopener" aria-label="EMBC paper">
+            <svg viewBox="0 0 168 116" role="img" aria-hidden="true">
+              <rect width="168" height="116" fill="#f0fdfa"/>
+              <rect x="16" y="16" width="86" height="26" rx="10" fill="#99f6e4"/>
+              <rect x="66" y="48" width="86" height="26" rx="10" fill="#14b8a6"/>
+              <g fill="#ffffff"><rect x="78" y="58" width="50" height="5" rx="2.5"/></g>
+              <g fill="#0f766e"><rect x="26" y="26" width="56" height="5" rx="2.5"/></g>
+              <text x="16" y="102" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="#0f766e">IEEE EMBC 2025</text>
+            </svg>
+          </a>
+          <div>
+            <div class="pub-status st-pub">IEEE EMBC 2025 · published</div>
+            <h3 class="pub-title">Diabetes Prevention Chatbots to Help Dietary Self-Management for the Chinese Population</h3>
+            <p class="pub-auth"><strong>Jiang, S.</strong>, &amp; Huang, M. C.</p>
+            <p class="pub-venue">Annual International Conference of the IEEE Engineering in Medicine and Biology Society, 2025, 1–7. <span class="pub-role">First author.</span></p>
+            <div class="chips-row">
+              <a class="lk" href="https://doi.org/10.1109/EMBC58623.2025.11254311" target="_blank" rel="noopener">DOI</a>
+              <a class="lk" href="#p-chat">Project details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <a class="thumb" href="CUGH Poster.pdf" target="_blank" rel="noopener" aria-label="CUGH poster">
+            <svg viewBox="0 0 168 116" role="img" aria-hidden="true">
+              <rect width="168" height="116" fill="#f5f3ff"/>
+              <rect x="30" y="12" width="74" height="80" rx="4" fill="#fff" stroke="#c4b5fd" stroke-width="1.5"/>
+              <g fill="#ddd6fe"><rect x="38" y="22" width="58" height="7" rx="2"/><rect x="38" y="36" width="26" height="22" rx="2"/><rect x="68" y="36" width="28" height="22" rx="2"/><rect x="38" y="64" width="58" height="4" rx="2"/><rect x="38" y="72" width="44" height="4" rx="2"/></g>
+              <circle cx="116" cy="62" r="17" fill="none" stroke="#7c3aed" stroke-width="3"/>
+              <line x1="128" y1="74" x2="142" y2="88" stroke="#7c3aed" stroke-width="4" stroke-linecap="round"/>
+              <text x="14" y="108" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="#5b21b6">CUGH 2024</text>
+            </svg>
+          </a>
+          <div>
+            <div class="pub-status st-poster">CUGH 2024 · poster</div>
+            <h3 class="pub-title">Factors Included in AI Algorithms Assisting Precision Medicine in Cancer Treatment: A Systematic Review</h3>
+            <p class="pub-auth"><strong>Jiang, S.</strong>, Shen, J., &amp; Chen, M.</p>
+            <p class="pub-venue">Consortium of Universities for Global Health Conference, Los Angeles, 2024. <span class="pub-role">Co-first author and presenter.</span></p>
+            <div class="chips-row">
+              <a class="lk" href="CUGH Poster.pdf" target="_blank" rel="noopener">Poster</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
+  </section>
 
-    <div class="tl-item">
-      <div class="tl-date">07/2026 – 09/2026</div>
-      <div class="tl-role">Synthetic Cohort Generation and Robustness Studies for AI-based Clinical Trial Matching</div>
-      <div class="tl-org">Research Assistant · Prof. Tina Hernandez-Boussard, Stanford University · Mentor: Soumyadeep Roy (Remote)</div>
-      <div class="tl-desc">Built a trial-specific Synthea module generation pipeline with automated eligibility-profile generation, failure diagnosis, and convergence monitoring — reaching LLM review score of 0.942 (GPT-5.4). Integrated with TrialGPT via FHIR JSON conversion; built robustness evaluators and perturbation pipelines assessing trial-matching under missing labs, temporal edits, and non-clinical noise.</div>
+  <!-- ═════════ PROJECTS ═════════ -->
+  <section class="block tint" id="experience">
+    <div class="wrap">
+      <h2 class="h2">Research experience</h2>
+      <p class="h2-sub">Each project opens to show its pipeline, my role, and what we found.</p>
+
+      <div class="filters" role="group" aria-label="Filter projects by scale">
+        <button class="filter" data-f="all" aria-pressed="true">All projects</button>
+        <button class="filter" data-f="mol" aria-pressed="false" style="--c:var(--mol)"><i></i>Molecule</button>
+        <button class="filter" data-f="cli" aria-pressed="false" style="--c:var(--cli)"><i></i>Clinic</button>
+        <button class="filter" data-f="pop" aria-pressed="false" style="--c:var(--pop)"><i></i>Population</button>
+      </div>
+
+      <!-- 1. EHR PHENOTYPING -->
+      <article class="proj open" id="p-pheno" data-scale="cli">
+        <div class="rail">05/2026 –<br/>Present<br/><span class="ongoing">Ongoing</span></div>
+        <div>
+          <div class="scale-tag" style="--c:var(--cli)"><i></i>Clinic</div>
+          <h3>LLM-based clinical AI agents for EHR phenotyping</h3>
+          <p class="proj-meta">Prof. Hua Xu <span>Yale University · Research Assistant</span></p>
+          <p class="lede">Phenotyping algorithms decide which patients in a health record "have" a disease, and today they are hand-written as long, site-specific SQL. I study whether an LLM agent can read a published phenotype definition and produce SQL that actually runs, and finds the right patients, on Yale New Haven Health's OMOP data.</p>
+          <div class="kpis">
+            <span class="kpi"><b>3</b> phenotypes: T2DM, dementia, hypothyroidism</span>
+            <span class="kpi"><b>80.0%</b> F1 on T2DM</span>
+            <span class="kpi"><b>GPT-5.4</b> agent pipelines</span>
+          </div>
+          <button class="toggle" aria-expanded="true" aria-controls="d-pheno"><span>Hide pipeline and details</span><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="detail" id="d-pheno"><div><div class="detail-inner">
+            <p class="flow-label">Pipeline</p>
+            <div class="flow" style="--n:6">
+              <div class="node" style="--i:0"><div class="n">1</div><b>Phenotype definitions</b><span>eMERGE algorithms from PheKB and PheMap</span></div>
+              <div class="node" style="--i:1"><div class="n">2</div><b>Gold-standard labels</b><span>Rule-based SQL in DuckDB on YNHH OMOP CDM</span></div>
+              <div class="node key" style="--i:2"><div class="n">3</div><b>LLM agent</b><span>GPT-5.4 with alpha, beta and standard prompts, tool calling, skills</span></div>
+              <div class="node" style="--i:3"><div class="n">4</div><b>Generated SQL</b><span>Phenotyping query for each disease</span></div>
+              <div class="node" style="--i:4"><div class="n">5</div><b>Execute and debug</b><span>Make queries runnable; log manual edits</span></div>
+              <div class="node" style="--i:5"><div class="n">6</div><b>Evaluate</b><span>Recall, F1, and two PPV settings</span></div>
+            </div>
+            <div class="dgrid">
+              <div class="dcol"><h4>Question</h4><p>Which combination of prompting strategy, tool access, and disease-specific versus generic skills gets an LLM agent closest to expert phenotyping logic?</p></div>
+              <div class="dcol"><h4>What I did</h4><ul>
+                <li>Implemented eMERGE algorithms for three diseases and derived gold labels with DuckDB and SQL.</li>
+                <li>Built agent pipelines comparing prompt styles, tool calling, and skill files.</li>
+                <li>Debugged generated SQL on OMOP and catalogued common manual edits and site-specific warehouse mismatches.</li>
+                <li>Designed labeled-only and unlabeled-inclusive PPV, so over-prediction becomes measurable.</li>
+              </ul></div>
+              <div class="dcol"><h4>What we found</h4><p>Agents reached strong agreement on T2DM and dementia. Hypothyroidism lagged, and error analysis traced it to missing race-specific criteria and over-inclusion of diagnosis codes.</p>
+                <div class="tagset"><span class="tg warn">Missing race-specific criteria</span><span class="tg warn">Over-inclusive diagnosis codes</span></div>
+                <p style="margin-top:.6rem;font-size:.8rem;color:var(--muted)">Manuscript in preparation.</p></div>
+            </div>
+            <div class="bars" role="img" aria-label="Unlabeled-inclusive PPV and F1 by phenotype: T2DM 74.5 and 80.0, Dementia 73.2 and 75.3, Hypothyroidism 15.1 and 26.0">
+              <div class="bars-head"><b>Best agent pipeline, by phenotype</b><div class="legend"><span><i style="background:var(--sky)"></i>Unlabeled-inclusive PPV</span><span><i style="background:var(--sky-ink)"></i>F1</span></div></div>
+              <div class="bar-row"><span>T2DM</span><div class="bar-pair"><div class="bar ppv" style="--w:74.5%"><em>74.5%</em></div><div class="bar f1" style="--w:80%"><em>80.0%</em></div></div></div>
+              <div class="bar-row"><span>Dementia</span><div class="bar-pair"><div class="bar ppv" style="--w:73.2%"><em>73.2%</em></div><div class="bar f1" style="--w:75.3%"><em>75.3%</em></div></div></div>
+              <div class="bar-row"><span>Hypothyroidism</span><div class="bar-pair"><div class="bar ppv" style="--w:15.1%"><em>15.1%</em></div><div class="bar f1" style="--w:26%"><em>26.0%</em></div></div></div>
+            </div>
+          </div></div></div>
+        </div>
+      </article>
+
+      <!-- 2. STANFORD TRIAL -->
+      <article class="proj" id="p-trial" data-scale="cli">
+        <div class="rail">07/2026 –<br/>09/2026</div>
+        <div>
+          <div class="scale-tag" style="--c:var(--cli)"><i></i>Clinic</div>
+          <h3>Synthetic cohort generation and robustness studies for AI-based clinical trial matching</h3>
+          <p class="proj-meta">Prof. Tina Hernandez-Boussard <span>Stanford University · Research Assistant (remote) · Mentor: Soumyadeep Roy</span></p>
+          <p class="lede">Testing AI trial-matching tools needs patients who meet, or almost meet, a trial's eligibility rules, and real records with those exact profiles are scarce and sensitive. I built a pipeline that turns a trial's eligibility criteria into a working Synthea module, generates a synthetic cohort, then stresses TrialGPT with controlled perturbations.</p>
+          <div class="kpis">
+            <span class="kpi"><b>0.942</b> top LLM review score (GPT-5.4)</span>
+            <span class="kpi"><b>FHIR → TrialGPT</b> integration</span>
+          </div>
+          <button class="toggle" aria-expanded="false" aria-controls="d-trial"><span>Show pipeline and details</span><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="detail" id="d-trial"><div><div class="detail-inner">
+            <p class="flow-label">Module generation</p>
+            <div class="flow" style="--n:6">
+              <div class="node" style="--i:0"><div class="n">1</div><b>Eligibility criteria</b><span>Free-text rules from ClinicalTrials.gov</span></div>
+              <div class="node" style="--i:1"><div class="n">2</div><b>Eligibility profile</b><span>LLM structures the criteria</span></div>
+              <div class="node key" style="--i:2"><div class="n">3</div><b>Synthea module</b><span>Trial-specific JSON config</span></div>
+              <div class="node" style="--i:3"><div class="n">4</div><b>Test run</b><span>Automated Synthea execution checks</span></div>
+              <div class="node" style="--i:4"><div class="n">5</div><b>Failure diagnosis</b><span>Structured diagnostic feedback</span></div>
+              <div class="node" style="--i:5"><div class="n">6</div><b>Synthetic cohort</b><span>Patients as FHIR JSON</span></div>
+              <div class="loop" style="--from:3;--to:6"><span>Fulfillment check loop with memory, rollback, convergence monitoring</span></div>
+            </div>
+            <p class="loop-note" style="display:none;font-size:.8rem;color:var(--sky-ink);font-weight:600;margin:-.4rem 0 1rem">Steps 3–5 repeat in a fulfillment check loop with optimization memory, rollback, and convergence monitoring.</p>
+            <p class="flow-label" style="margin-top:1.6rem">Downstream robustness test</p>
+            <div class="flow" style="--n:3;max-width:640px">
+              <div class="node" style="--i:6"><div class="n">7</div><b>Narrative conversion</b><span>FHIR JSON to TrialGPT patient notes</span></div>
+              <div class="node key" style="--i:7"><div class="n">8</div><b>Perturbation pipeline</b><span>Controlled edits to clinical info</span></div>
+              <div class="node" style="--i:8"><div class="n">9</div><b>Robustness evaluators</b><span>Does TrialGPT's match hold?</span></div>
+            </div>
+            <div class="dgrid">
+              <div class="dcol"><h4>Question</h4><p>Can we generate realistic cohorts on demand for any trial, and does an LLM trial matcher stay consistent when patient information is incomplete or noisy?</p></div>
+              <div class="dcol"><h4>What I did</h4><ul>
+                <li>Built the module-generation pipeline with execution checks and feedback stages.</li>
+                <li>Added a criteria-fulfillment loop with optimization memory and rollback to stop regression and oscillation.</li>
+                <li>Connected the cohort to TrialGPT and wrote the perturbation and evaluation tooling.</li>
+              </ul></div>
+              <div class="dcol"><h4>Perturbations tested</h4>
+                <div class="tagset"><span class="tg">Missing lab values</span><span class="tg">Edited temporal criteria</span><span class="tg">Added non-clinical factors</span></div>
+                <p style="margin-top:.6rem;font-size:.8rem;color:var(--muted)">Manuscript in preparation.</p></div>
+            </div>
+          </div></div></div>
+        </div>
+      </article>
+
+      <!-- 3. SCIAGENTARENA -->
+      <article class="proj" id="p-sci" data-scale="mol">
+        <div class="rail">01/2026 –<br/>06/2026</div>
+        <div>
+          <div class="scale-tag" style="--c:var(--mol)"><i></i>Molecule</div>
+          <h3>Benchmarking AI agents for addressing multi-scale scientific challenges</h3>
+          <p class="proj-meta">Prof. Hongyu Zhao <span>Yale University · Research Assistant</span></p>
+          <p class="lede">SciAgentArena tests AI agents on about 200 real research tasks with step-by-step verification. I designed its drug-safety and pharmacology tasks, the kind of checks a medicinal chemist runs before a compound moves forward, plus traps that test whether an agent notices when something is wrong.</p>
+          <div class="kpis">
+            <span class="kpi"><b>~200</b> tasks in the benchmark</span>
+            <span class="kpi"><b>Nature</b> under revision</span>
+          </div>
+          <button class="toggle" aria-expanded="false" aria-controls="d-sci"><span>Show pipeline and details</span><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="detail" id="d-sci"><div><div class="detail-inner">
+            <p class="flow-label">Evaluation pipeline for my tasks</p>
+            <div class="flow" style="--n:5">
+              <div class="node key" style="--i:0"><div class="n">1</div><b>Task design</b><span>Drug safety and pharmacology scenarios</span></div>
+              <div class="node" style="--i:1"><div class="n">2</div><b>Stepwise verification</b><span>Checkpoints per task step</span></div>
+              <div class="node" style="--i:2"><div class="n">3</div><b>Agents under test</b><span>General LLMs, multidomain and chemistry agents</span></div>
+              <div class="node" style="--i:3"><div class="n">4</div><b>Task metrics</b><span>F1, tiered toxicity alerts, stratification accuracy</span></div>
+              <div class="node" style="--i:4"><div class="n">5</div><b>Failure analysis</b><span>Where and why agents break</span></div>
+            </div>
+            <div class="dgrid">
+              <div class="dcol"><h4>Tasks I designed</h4>
+                <div class="tagset"><span class="tg">Toxicophore detection</span><span class="tg">hERG prediction</span><span class="tg">PAINS filtering and classification</span><span class="tg">Metabolic soft spots</span><span class="tg">"Cyanide trap" detection</span></div>
+                <p style="margin-top:.6rem">Stress tests: corrupted datasets and conflicting instructions.</p></div>
+              <div class="dcol"><h4>Failure modes found</h4>
+                <div class="tagset"><span class="tg warn">Schema mismatch</span><span class="tg warn">Wrong method selection</span><span class="tg warn">Tool-invocation errors</span><span class="tg warn">Runtime exceptions</span><span class="tg warn">Misread objectives</span></div></div>
+              <div class="dcol"><h4>Takeaway</h4><p>Agents do well on clearly specified data-analysis workflows but are uneven on open-ended research, struggling to explore on their own or produce new insight.</p></div>
+            </div>
+            <figure class="paper-fig">
+              <img src="figures/sciagentarena-fig1.png" alt="Overview figure from the SciAgentArena preprint" loading="lazy" onerror="this.closest('figure').remove()" />
+              <figcaption>Overview figure from the preprint (arXiv:2606.12736).</figcaption>
+            </figure>
+          </div></div></div>
+        </div>
+      </article>
+
+      <!-- 4. VDJBASE -->
+      <article class="proj" id="p-vdj" data-scale="mol">
+        <div class="rail">03/2026 –<br/>08/2026</div>
+        <div>
+          <div class="scale-tag" style="--c:var(--mol)"><i></i>Molecule</div>
+          <h3>End-to-end Nextflow pipeline for expanding the VDJbase database</h3>
+          <p class="proj-meta">Prof. Gur Yaari <span>Yale University · Research Assistant</span></p>
+          <p class="lede">VDJbase catalogs the germline genes behind antibody and T-cell receptor diversity across populations. I built the data-processing path that takes raw immune-repertoire sequencing data from VDJbase files, through Yale's HPC cluster, to curated entries ready for the database.</p>
+          <div class="kpis">
+            <span class="kpi"><b>nf-core/airrflow</b> on Nextflow DSL2</span>
+            <span class="kpi"><b>Slurm</b> HPC execution</span>
+          </div>
+          <button class="toggle" aria-expanded="false" aria-controls="d-vdj"><span>Show pipeline and details</span><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="detail" id="d-vdj"><div><div class="detail-inner">
+            <p class="flow-label">Pipeline</p>
+            <div class="flow" style="--n:5">
+              <div class="node" style="--i:0"><div class="n">1</div><b>Source data</b><span>Assembled and FASTQ AIRR-seq files</span></div>
+              <div class="node" style="--i:1"><div class="n">2</div><b>Transfer</b><span>VDJbase to Yale HPC via igserver</span></div>
+              <div class="node key" style="--i:2"><div class="n">3</div><b>airrflow on Slurm</b><span>V(D)J assignment, novel alleles, genotype and haplotype</span></div>
+              <div class="node" style="--i:3"><div class="n">4</div><b>Curation</b><span>Submission and curation workflow</span></div>
+              <div class="node" style="--i:4"><div class="n">5</div><b>VDJbase</b><span>Population-level germline database</span></div>
+            </div>
+            <div class="dgrid">
+              <div class="dcol"><h4>Question</h4><p>How do we process large AIRR-seq collections reproducibly so new populations can be added to the germline reference?</p></div>
+              <div class="dcol"><h4>What I did</h4><ul><li>Designed and built the ingestion pipeline end to end.</li><li>Ran nf-core/airrflow at scale with Nextflow and Slurm.</li><li>Kept runs reproducible across large HPC job batches.</li></ul></div>
+              <div class="dcol"><h4>Problems solved</h4><div class="tagset"><span class="tg">Session lock conflicts</span><span class="tg">Resource allocation errors</span></div></div>
+            </div>
+          </div></div></div>
+        </div>
+      </article>
+
+      <!-- 5. DRUGPLAYGROUND -->
+      <article class="proj" id="p-drug" data-scale="mol">
+        <div class="rail">05/2025 –<br/>01/2026</div>
+        <div>
+          <div class="scale-tag" style="--c:var(--mol)"><i></i>Molecule</div>
+          <h3>DrugPlayGround: benchmarking LLMs and embeddings for drug discovery</h3>
+          <p class="proj-meta">Prof. Hongyu Zhao <span>Yale University · Research Assistant · Co-first author</span></p>
+          <p class="lede">Most drug-discovery models represent a molecule by its structure. We asked whether what language models know about a drug, its mechanism, uses and interactions, carries pharmacological signal that structure alone misses, and built a unified benchmark to test it.</p>
+          <div class="kpis">
+            <span class="kpi"><b>+54%</b> drug synergy R²</span>
+            <span class="kpi"><b>+22%</b> drug–protein interaction accuracy</span>
+            <span class="kpi"><b>100k+</b> generated drug descriptions</span>
+          </div>
+          <button class="toggle" aria-expanded="false" aria-controls="d-drug"><span>Show pipeline and details</span><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="detail" id="d-drug"><div><div class="detail-inner">
+            <p class="flow-label">Benchmark pipeline</p>
+            <div class="flow" style="--n:6">
+              <div class="node" style="--i:0"><div class="n">1</div><b>Drug datasets</b><span>4 sets, 1,000+ cancer drugs each, PubChem and Hugging Face</span></div>
+              <div class="node" style="--i:1"><div class="n">2</div><b>Prompting</b><span>Normal, CoT and Meta prompts</span></div>
+              <div class="node" style="--i:2"><div class="n">3</div><b>5 LLMs</b><span>GPT, Gemini, Claude, DeepSeek, Mistral on Yale HPC</span></div>
+              <div class="node" style="--i:3"><div class="n">4</div><b>5 embedding models</b><span>Text to drug representations</span></div>
+              <div class="node key" style="--i:4"><div class="n">5</div><b>Downstream tasks</b><span>Synergy, drug–protein interaction, perturbation, ADMET</span></div>
+              <div class="node" style="--i:5"><div class="n">6</div><b>Versus baselines</b><span>Uni-Mol, ChemCPA, RDKit</span></div>
+            </div>
+            <div class="dgrid">
+              <div class="dcol"><h4>Question</h4><p>Do LLM-derived drug embeddings capture pharmacology beyond molecular structure, and how stable are the descriptions themselves?</p></div>
+              <div class="dcol"><h4>What I did</h4><ul>
+                <li>Curated the four drug datasets.</li>
+                <li>Engineered the three prompting strategies and ran batch inference with Slurm.</li>
+                <li>Implemented text-quality evaluation and temperature-sensitivity analysis.</li>
+                <li>Produced the comparative visualizations.</li>
+              </ul>
+                <div class="tagset"><span class="tg">BERTScore</span><span class="tg">ROUGE</span><span class="tg">BLEU</span><span class="tg">Cosine similarity</span></div></div>
+              <div class="dcol"><h4>What we found</h4><p>LLM-derived embeddings consistently beat state-of-the-art molecular foundation models.</p>
+                <div class="big-stats" style="margin-top:.6rem"><div class="big" style="min-width:0"><b>+54%</b><span>Synergy R²</span></div><div class="big" style="min-width:0"><b>+22%</b><span>DPI accuracy</span></div></div></div>
+            </div>
+            <figure class="paper-fig">
+              <img src="figures/drugplayground-fig1.png" alt="Overview figure from the DrugPlayGround preprint" loading="lazy" onerror="this.closest('figure').remove()" />
+              <figcaption>Overview figure from the preprint (arXiv:2604.02346).</figcaption>
+            </figure>
+          </div></div></div>
+        </div>
+      </article>
+
+      <!-- 6. CHATBOT -->
+      <article class="proj" id="p-chat" data-scale="pop">
+        <div class="rail">06/2023 –<br/>05/2025</div>
+        <div>
+          <div class="scale-tag" style="--c:var(--pop)"><i></i>Population</div>
+          <h3>Diabetes prevention chatbots for dietary self-management in the Chinese population</h3>
+          <p class="proj-meta">Prof. Ming-Chun Huang <span>Duke Kunshan University · Research Investigator · First author</span></p>
+          <p class="lede">Most diet advice in health chatbots is built around Western guidelines and food. I curated China-specific diabetes prevention evidence, fine-tuned GPT models on it, and shipped a web app that gives culturally grounded dietary and lifestyle guidance.</p>
+          <div class="kpis">
+            <span class="kpi"><b>IEEE EMBC 2025</b> first author</span>
+            <span class="kpi"><b>80+</b> curated dialogues</span>
+            <span class="kpi"><b>Deployed</b> Streamlit app</span>
+          </div>
+          <button class="toggle" aria-expanded="false" aria-controls="d-chat"><span>Show pipeline and details</span><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="detail" id="d-chat"><div><div class="detail-inner">
+            <p class="flow-label">Pipeline</p>
+            <div class="flow" style="--n:5">
+              <div class="node" style="--i:0"><div class="n">1</div><b>Evidence synthesis</b><span>5+ papers into a China-specific guideline</span></div>
+              <div class="node" style="--i:1"><div class="n">2</div><b>Dialogue dataset</b><span>80+ diet and lifestyle conversations</span></div>
+              <div class="node key" style="--i:2"><div class="n">3</div><b>Fine-tuning</b><span>GPT-3.5-turbo and GPT-4o via OpenAI API</span></div>
+              <div class="node" style="--i:3"><div class="n">4</div><b>Evaluation</b><span>Loss curves plus scenario-based review</span></div>
+              <div class="node" style="--i:4"><div class="n">5</div><b>Web app</b><span>Streamlit, Firebase login, chat history, export</span></div>
+            </div>
+            <div class="dgrid">
+              <div class="dcol"><h4>Question</h4><p>Can a lightly fine-tuned LLM give evidence-based, culturally appropriate prevention advice to Chinese-speaking users?</p></div>
+              <div class="dcol"><h4>What I did</h4><ul><li>Led the project end to end as first author.</li><li>Built the guideline and dataset, ran fine-tuning, and designed the evaluation.</li><li>Developed and deployed the app.</li></ul></div>
+              <div class="dcol"><h4>What we found</h4><p>Fine-tuned GPT-3.5-turbo generalized better than GPT-4o with lower validation loss, so it powers the deployed app.</p></div>
+            </div>
+          </div></div></div>
+        </div>
+      </article>
+
+      <div class="more" id="more">
+        <h3>Also</h3>
+        <div class="more-item"><time>01/2025 – 03/2025</time><div><b>Improving the decision boundary of Non-Parametric Outlier Synthesis (NPOS)</b> <span>with Prof. Kaizhu Huang, DKU. Compared GMM, KDE and uniform outlier synthesis for out-of-distribution detection.</span></div></div>
+        <div class="more-item"><time>06/2023 – 03/2024</time><div><b>Systematic review: key factors in AI algorithms for cancer treatment</b> <span>with Prof. Meifang Chen, DKU. Screened 3,325+ articles; presented at CUGH 2024.</span></div></div>
+      </div>
     </div>
+  </section>
 
-    <div class="tl-item">
-      <div class="tl-date">01/2026 – 06/2026</div>
-      <div class="tl-role">Benchmarking AI Agents for Addressing Multi-Scale Scientific Challenges</div>
-      <div class="tl-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
-      <div class="tl-desc">Designed drug safety evaluation tasks for AI agents (hERG prediction, PAINS filter, metabolic soft spot identification, "cyanide trap" detection). Developed task-based metrics (F1 score, toxicity alert accuracy, stratification accuracy); investigated failure modes across general LLMs, multidomain agents, and chemistry-specialized agents.</div>
+  <!-- ═════════ WORK ═════════ -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2 class="h2">Industry</h2>
+      <p class="h2-sub">Working with health data at production scale.</p>
+      <div class="work">
+        <div class="rail">06/2024 –<br/>08/2024</div>
+        <div>
+          <h3>Data Scientist Intern, Merit Interactive</h3>
+          <p class="proj-meta" style="margin-bottom:.5rem"><span>Hangzhou, China</span></p>
+          <p class="lede">Standardized 100M+ healthcare and pharmacy records with FlinkSQL and Python in a cloud data-governance pipeline, built interactive dashboards on medication sales and hospital operations, and shipped three customer-facing APIs for pharmaceutical data access.</p>
+          <div class="kpis"><span class="kpi"><b>100M+</b> records</span><span class="kpi"><b>3</b> APIs shipped</span></div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="tl-item">
-      <div class="tl-date">03/2026 – 08/2026</div>
-      <div class="tl-role">End-to-End Nextflow Pipeline for Expanding the VDJbase Database</div>
-      <div class="tl-org">Research Assistant · Prof. Gur Yaari, Yale University</div>
-      <div class="tl-desc">Built a data-ingestion pipeline for AIRR-seq data transfer to Yale HPC via igserver; executed nf-core/airrflow with Nextflow/DSL2 and Slurm for V(D)J assignment, novel allele inference, and genotype/haplotype calling. Supported expansion of VDJbase's population-level germline sequence database.</div>
+  <!-- ═════════ CONTACT ═════════ -->
+  <section class="block" id="contact">
+    <div class="wrap">
+      <h2 class="h2">Contact</h2>
+      <p class="h2-sub">Feel free to reach out if you'd like to!</p>
+      <div class="cgrid">
+        <a class="ccard" href="mailto:sihan.jiang@yale.edu"><div class="cicon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="clabel">Email</div><div class="cval">sihan.jiang@yale.edu</div></div></a>
+        <a class="ccard" href="https://scholar.google.com/citations?hl=en&user=kggQUlIAAAAJ" target="_blank" rel="noopener"><div class="cicon"><svg viewBox="0 0 24 24"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg></div><div><div class="clabel">Google Scholar</div><div class="cval">Sihan Jiang</div></div></a>
+        <a class="ccard" href="https://github.com/JennyJiang526" target="_blank" rel="noopener"><div class="cicon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div><div><div class="clabel">GitHub</div><div class="cval">@JennyJiang526</div></div></a>
+        <a class="ccard" href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" rel="noopener"><div class="cicon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="clabel">LinkedIn</div><div class="cval">Sihan Jiang</div></div></a>
+      </div>
     </div>
-
-    <div class="tl-item">
-      <div class="tl-date">05/2025 – 01/2026</div>
-      <div class="tl-role">DrugPlayGround: Benchmarking LLMs and Embeddings for Drug Discovery</div>
-      <div class="tl-org">Research Assistant · Prof. Hongyu Zhao, Yale University</div>
-      <div class="tl-desc">Benchmarked 5 LLMs and 5 embedding models across drug synergy, drug–protein interaction, and chemical perturbation tasks; curated 4 datasets (1,000+ entries each). Engineered Normal, CoT, and Meta prompting strategies on Yale HPC, generating 100k+ drug descriptions. LLM-derived embeddings outperformed molecular foundation models by up to 54% (drug synergy R²) and 22% (drug–protein interaction).</div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">06/2023 – 05/2025</div>
-      <div class="tl-role">Diabetes Prevention Chatbots for the Chinese Population</div>
-      <div class="tl-org">Research Investigator · Prof. Ming-Chun Huang, Duke Kunshan University</div>
-      <div class="tl-desc">Fine-tuned GPT-3.5-turbo and GPT-4o on a China-specific diabetes prevention dataset; deployed an AI-driven Streamlit web app with Firebase authentication and real-time chat history export. Published first-author paper at IEEE EMBC 2025.</div>
-    </div>
-
-  </div>
-
-  <div class="additional-label">Selected Additional</div>
-  <div class="additional-chips">
-    <div class="add-chip"><strong>Improving the Decision Boundary of Non-Parametric Outlier Synthesis (NPOS) Model</strong> · Prof. Kaizhu Huang, Duke Kunshan University · 01/2025 – 03/2025</div>
-    <div class="add-chip"><strong>Systematic Review: Key Factors in AI Algorithms Applied in Cancer Treatment</strong> · Prof. Meifang Chen, Duke Kunshan University · 06/2023 – 03/2024</div>
-  </div>
-</div>
-</section>
-
-<hr class="divider" />
-
-<!-- ── WORK ── -->
-<section id="work">
-<div class="page fade-in">
-  <p class="eyebrow">Industry</p>
-  <h2 class="section-h">Work Experience</h2>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-date">06/2024 – 08/2024</div>
-      <div class="tl-role">Data Scientist Intern · Merit Interactive Co., Ltd.</div>
-      <div class="tl-org">Hangzhou, China</div>
-      <div class="tl-desc">Processed and standardized 100M+ healthcare and pharmacy records using FlinkSQL and Python within a cloud-based data governance pipeline. Developed interactive multidimensional visualizations for medication sales and hospital operations. Built and tested 3 customer-facing APIs for pharmaceutical dataset access; deployed to GitLab.</div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ── CONTACT (dark) ── -->
-<section id="contact">
-<div class="page fade-in">
-  <p class="eyebrow">Get in Touch</p>
-  <h2 class="section-h">Contact</h2>
-  <p class="contact-sub">Feel free to reach out if you'd like to!</p>
-  <div class="contact-grid">
-    <a href="mailto:sihan.jiang@yale.edu" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div><div class="contact-label">Email</div><div class="contact-value">sihan.jiang@yale.edu</div></div>
-    </a>
-    <a href="https://scholar.google.com/citations?hl=en&user=kggQUlIAAAAJ" target="_blank" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-      <div><div class="contact-label">Google Scholar</div><div class="contact-value">Sihan Jiang</div></div>
-    </a>
-    <a href="https://github.com/JennyJiang526" target="_blank" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
-      <div><div class="contact-label">GitHub</div><div class="contact-value">@JennyJiang526</div></div>
-    </a>
-    <a href="https://www.linkedin.com/in/sihan-jiang-b7395a23b/" target="_blank" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-      <div><div class="contact-label">LinkedIn</div><div class="contact-value">Sihan Jiang</div></div>
-    </a>
-  </div>
-</div>
-</section>
-
+  </section>
 </main>
 
-<footer>
-  <span>Sihan Jiang</span> · © 2026 · Built with GitHub Pages
-</footer>
+<footer>© 2026 Sihan Jiang. Built with GitHub Pages.</footer>
 
 <script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+  // one orchestrated load moment
+  requestAnimationFrame(() => document.body.classList.add('loaded'));
+
+  // expand / collapse projects
+  document.querySelectorAll('.proj .toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const proj = btn.closest('.proj');
+      const open = proj.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.querySelector('span').textContent = open ? 'Hide pipeline and details' : 'Show pipeline and details';
+    });
+  });
+
+  // open a project when linked from elsewhere on the page
+  function openFromHash() {
+    const el = document.querySelector(location.hash);
+    if (el && el.classList.contains('proj') && !el.classList.contains('open')) el.querySelector('.toggle').click();
+  }
+  window.addEventListener('hashchange', openFromHash);
+  if (location.hash) openFromHash();
+
+  // filter by scale
+  const filters = document.querySelectorAll('.filter');
+  filters.forEach(f => f.addEventListener('click', () => {
+    filters.forEach(x => x.setAttribute('aria-pressed', x === f));
+    const k = f.dataset.f;
+    document.querySelectorAll('.proj').forEach(p => { p.hidden = !(k === 'all' || p.dataset.scale === k); });
+  }));
+
+  // reading progress + active nav link
+  const bar = document.querySelector('.progress');
+  const links = [...document.querySelectorAll('.nav-links a')];
+  const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+  function onScroll() {
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    let idx = 0;
+    targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < 120) idx = i; });
+    links.forEach((a, i) => a.classList.toggle('active', i === idx));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
 </body>
 </html>
