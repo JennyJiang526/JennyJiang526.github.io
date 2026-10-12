@@ -49,6 +49,13 @@
     .nav-links a.active { color: var(--sky-deep); border-color: var(--sky); }
 
     .wrap { max-width: 1040px; margin: 0 auto; padding: 0 2.5rem; }
+    main#top {
+      background:
+        radial-gradient(620px 420px at 88% 120px, rgba(56,189,248,.16), transparent 70%),
+        radial-gradient(520px 380px at 8% 60px, rgba(99,102,241,.08), transparent 70%),
+        radial-gradient(560px 360px at 60% 760px, rgba(20,184,166,.07), transparent 70%);
+      background-repeat: no-repeat;
+    }
 
     /* ───────── HERO ───────── */
     .hero { padding: 120px 0 40px; display: grid; grid-template-columns: 1fr 210px; gap: 3.5rem; align-items: start; }
@@ -81,13 +88,11 @@
     .scales { margin: 8px 0 72px; position: relative; }
     .scales-intro { font-family: 'Lora', serif; font-size: 1.18rem; color: var(--soft); margin-bottom: 1.4rem; max-width: 60ch; }
     .scales-intro em { font-style: italic; color: var(--ink); }
-    .scale-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; border-top: 1px solid var(--line); }
-    .scale-track::before { content: ''; position: absolute; top: -1px; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--mol), var(--cli), var(--pop)); transition: width 1.4s cubic-bezier(.6,.05,.25,1) .35s; }
+    .scale-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; position: relative; }
+    .scale-track::before { content: ''; position: absolute; top: 0; z-index: 1; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--mol), var(--cli), var(--pop)); transition: width 1.4s cubic-bezier(.6,.05,.25,1) .35s; }
     .loaded .scale-track::before { width: 100%; }
-    .scale { padding: 1.4rem 1.6rem 0 0; position: relative; }
-    .scale + .scale { padding-left: 1.6rem; border-left: 1px solid var(--line); }
-    .scale-dot { position: absolute; top: -7px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 3px solid var(--c); }
-    .scale + .scale .scale-dot { left: 1.6rem; }
+    .scale { padding: 1.5rem 1.4rem 1.3rem; position: relative; border-radius: 0 0 14px 14px; background: color-mix(in srgb, var(--c) 8%, white); border-top: 3px solid color-mix(in srgb, var(--c) 25%, white); }
+    .scale-dot { position: absolute; top: -7px; left: 1.4rem; z-index: 2; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 3px solid var(--c); }
     .scale-name { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: .2rem; }
     .scale-name svg { width: 22px; height: 22px; stroke: var(--c); fill: none; stroke-width: 1.7; }
     .scale-q { font-size: .9rem; color: var(--muted); margin-bottom: .8rem; line-height: 1.55; }
@@ -99,17 +104,13 @@
 
     /* ───────── SECTION SHELL ───────── */
     section.block { padding: 64px 0; border-top: 1px solid var(--line); }
-    section.tint { background: var(--off); }
+    section.tint { background: linear-gradient(180deg, #f0f9ff 0%, #f5f7ff 100%); }
+    section.teal { background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%); }
     .h2 { font-family: 'Lora', serif; font-size: 1.7rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: .35rem; display: flex; align-items: center; gap: 12px; }
     .h2::before { content: ''; width: 6px; height: 1.3rem; border-radius: 3px; background: var(--grad); }
     .h2-sub { color: var(--muted); font-size: .94rem; margin-bottom: 2rem; max-width: 66ch; }
 
     /* ───────── NEWS ───────── */
-    .news { display: grid; grid-template-columns: 96px 1fr; row-gap: .7rem; column-gap: 1.5rem; max-width: 760px; }
-    .news dt { font-size: .82rem; font-weight: 600; color: var(--sky-deep); padding-top: 1px; white-space: nowrap; }
-    .news dd { font-size: .93rem; color: var(--soft); }
-    .news dd a { font-weight: 600; text-decoration: none; }
-    .news dd a:hover { text-decoration: underline; }
 
     /* ───────── EDUCATION ───────── */
     .edu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
@@ -263,15 +264,10 @@
       .hero { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 96px; }
       .portrait { order: -1; width: 120px; height: 120px; }
       .scale-track { grid-template-columns: 1fr; }
-      .scale, .scale + .scale { padding: 1.2rem 0 0; border-left: none; }
-      .scale + .scale { border-top: 1px solid var(--line); margin-top: 1rem; }
-      .scale + .scale .scale-dot { left: 0; }
       .edu, .cgrid { grid-template-columns: 1fr; }
       .pub { grid-template-columns: 1fr; gap: .8rem; }
       .thumb { width: 100%; max-width: 320px; }
       .proj, .more-item, .work { grid-template-columns: 1fr; gap: .4rem; }
-      .news { grid-template-columns: 1fr; row-gap: .15rem; }
-      .news dd { margin-bottom: .6rem; }
     }
   </style>
 </head>
@@ -281,10 +277,9 @@
   <a class="nav-name" href="#top">Sihan Jiang</a>
   <ul class="nav-links">
     <li><a href="#top">About</a></li>
-    <li><a href="#news">News</a></li>
     <li><a href="#education">Education</a></li>
-    <li><a href="#publications">Research</a></li>
-    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Projects</a></li>
     <li><a href="#work">Work</a></li>
     <!-- <li><a href="beyond.html">Beyond</a></li> -->
     <li><a href="#contact">Contact</a></li>
@@ -358,23 +353,6 @@
     </div>
   </div>
 
-  <!-- ═════════ NEWS ═════════ -->
-  <section class="block" id="news">
-    <div class="wrap">
-      <h2 class="h2">News</h2>
-      <p class="h2-sub">Recent milestones.</p>
-      <dl class="news">
-        <dt>Sep 2026</dt><dd>Wrapped up summer research with the Boussard Lab at Stanford on <a href="#p-trial">synthetic cohorts for AI trial matching</a>.</dd>
-        <dt>Jul 2026</dt><dd>Started remote research at Stanford with Prof. Tina Hernandez-Boussard.</dd>
-        <dt>Jun 2026</dt><dd><a href="https://arxiv.org/abs/2606.12736" target="_blank" rel="noopener">SciAgentArena</a> is on arXiv, a benchmark of ~200 real research tasks for AI agents. Now under revision at <i>Nature</i>.</dd>
-        <dt>May 2026</dt><dd>Joined Prof. Hua Xu's lab at Yale to build <a href="#p-pheno">LLM agents for EHR phenotyping</a>.</dd>
-        <dt>Feb 2026</dt><dd><a href="https://arxiv.org/abs/2604.02346" target="_blank" rel="noopener">DrugPlayGround</a> is on arXiv (co-first author), now accepted at <i>npj Drug Discovery</i>.</dd>
-        <dt>Aug 2025</dt><dd>Started my M.S. in Biostatistics at Yale.</dd>
-        <dt>2025</dt><dd>First-author paper on <a href="#p-chat">diabetes prevention chatbots</a> published at IEEE EMBC 2025.</dd>
-        <dt>May 2025</dt><dd>Graduated cum laude from Duke Kunshan University and Duke University.</dd>
-      </dl>
-    </div>
-  </section>
 
   <!-- ═════════ EDUCATION ═════════ -->
   <section class="block tint" id="education">
@@ -511,7 +489,7 @@
   <!-- ═════════ PROJECTS ═════════ -->
   <section class="block tint" id="experience">
     <div class="wrap">
-      <h2 class="h2">Research experience</h2>
+      <h2 class="h2">Projects</h2>
       <p class="h2-sub">Each project opens to show its pipeline, my role, and what we found.</p>
 
       <div class="filters" role="group" aria-label="Filter projects by scale">
@@ -767,7 +745,7 @@
   </section>
 
   <!-- ═════════ WORK ═════════ -->
-  <section class="block" id="work">
+  <section class="block teal" id="work">
     <div class="wrap">
       <h2 class="h2">Industry</h2>
       <p class="h2-sub">Working with health data at production scale.</p>
