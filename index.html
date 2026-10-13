@@ -58,7 +58,7 @@
     }
 
     /* ───────── HERO ───────── */
-    .hero { padding: 120px 0 40px; display: grid; grid-template-columns: 1fr 210px; gap: 3.5rem; align-items: start; }
+    .hero { padding: 120px 0 72px; display: grid; grid-template-columns: 1fr 210px; gap: 3.5rem; align-items: start; }
     .hero h1 {
       font-family: 'Lora', serif; font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600;
       letter-spacing: -.03em; line-height: 1.08; padding-bottom: .1em; margin-bottom: .3rem;
@@ -84,23 +84,6 @@
     .portrait-ring { position: relative; width: 100%; height: 100%; border-radius: 50%; padding: 4px; background: conic-gradient(from 200deg, var(--mol), var(--cli), var(--pop), var(--mol)); }
     .portrait img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 3px solid #fff; display: block; }
 
-    /* ───────── SCALES BAND (signature) ───────── */
-    .scales { margin: 8px 0 72px; position: relative; }
-    .scales-intro { font-family: 'Lora', serif; font-size: 1.18rem; color: var(--soft); margin-bottom: 1.4rem; max-width: 60ch; }
-    .scales-intro em { font-style: italic; color: var(--ink); }
-    .scale-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; position: relative; }
-    .scale-track::before { content: ''; position: absolute; top: 0; z-index: 1; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--mol), var(--cli), var(--pop)); transition: width 1.4s cubic-bezier(.6,.05,.25,1) .35s; }
-    .loaded .scale-track::before { width: 100%; }
-    .scale { padding: 1.5rem 1.4rem 1.3rem; position: relative; border-radius: 0 0 14px 14px; background: color-mix(in srgb, var(--c) 8%, white); border-top: 3px solid color-mix(in srgb, var(--c) 25%, white); }
-    .scale-dot { position: absolute; top: -7px; left: 1.4rem; z-index: 2; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 3px solid var(--c); }
-    .scale-name { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: .2rem; }
-    .scale-name svg { width: 22px; height: 22px; stroke: var(--c); fill: none; stroke-width: 1.7; }
-    .scale-q { font-size: .9rem; color: var(--muted); margin-bottom: .8rem; line-height: 1.55; }
-    .scale ul { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
-    .scale li a { font-size: .86rem; font-weight: 500; color: var(--soft); text-decoration: none; display: inline-flex; gap: 8px; align-items: baseline; }
-    .scale li a::before { content: ''; width: 6px; height: 6px; border-radius: 2px; background: var(--c); flex-shrink: 0; transform: translateY(-1px); }
-    .scale li a:hover { color: var(--c); }
-    .s-mol { --c: var(--mol); } .s-cli { --c: var(--cli); } .s-pop { --c: var(--pop); }
 
     /* ───────── SECTION SHELL ───────── */
     section.block { padding: 64px 0; border-top: 1px solid var(--line); }
@@ -139,18 +122,12 @@
     .lk:hover { background: var(--mist-2); }
 
     /* ───────── PROJECTS ───────── */
-    .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
-    .filter { font: inherit; font-size: .8rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; border: 1px solid var(--line); background: #fff; color: var(--soft); cursor: pointer; transition: all .18s; display: inline-flex; align-items: center; gap: 7px; }
-    .filter i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--muted)); }
-    .filter[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
 
     .proj { display: grid; grid-template-columns: 112px 1fr; gap: 1.75rem; padding: 2rem 0; border-top: 1px solid var(--line); }
     .proj:first-of-type { border-top: none; padding-top: .5rem; }
     .proj[hidden] { display: none; }
     .rail { font-size: .8rem; color: var(--muted); font-weight: 500; line-height: 1.5; position: relative; }
     .rail .ongoing { display: inline-block; margin-top: .45rem; font-size: .7rem; font-weight: 700; color: #fff; background: var(--sky-deep); padding: 1px 8px; border-radius: 5px; }
-    .scale-tag { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 700; color: var(--c); margin-bottom: .35rem; }
-    .scale-tag i { width: 7px; height: 7px; border-radius: 2px; background: var(--c); }
     .proj h3 { font-family: 'Lora', serif; font-size: 1.22rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; margin-bottom: .3rem; }
     .proj-meta { font-size: .86rem; color: var(--sky-deep); font-weight: 600; margin-bottom: .7rem; }
     .proj-meta span { color: var(--muted); font-weight: 500; }
@@ -263,7 +240,6 @@
       .wrap { padding: 0 1.25rem; }
       .hero { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 96px; }
       .portrait { order: -1; width: 120px; height: 120px; }
-      .scale-track { grid-template-columns: 1fr; }
       .edu, .cgrid { grid-template-columns: 1fr; }
       .pub { grid-template-columns: 1fr; gap: .8rem; }
       .thumb { width: 100%; max-width: 320px; }
@@ -317,42 +293,7 @@
       </div>
     </header>
 
-    <!-- Signature: research across three scales -->
-    <div class="scales" aria-label="Research areas">
-      <p class="scales-intro intro d3">My research spans three scales of biomedicine — <em>from the molecule, to the clinic, to the population.</em></p>
-      <div class="scale-track">
-        <div class="scale s-mol">
-          <span class="scale-dot"></span>
-          <div class="scale-name"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8.3 8.2l2.4 6.6M15.7 8.2l-2.4 6.6M8.5 7h7"/></svg>Molecule</div>
-          <p class="scale-q">Do language models capture what matters about a drug, and can AI agents reason about drug safety?</p>
-          <ul>
-            <li><a href="#p-drug">DrugPlayGround benchmark</a></li>
-            <li><a href="#p-sci">SciAgentArena drug-safety tasks</a></li>
-            <li><a href="#p-vdj">VDJbase immune repertoire pipeline</a></li>
-          </ul>
-        </div>
-        <div class="scale s-cli">
-          <span class="scale-dot"></span>
-          <div class="scale-name"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v2h6V3M12 9v6M9 12h6"/></svg>Clinic</div>
-          <p class="scale-q">Can LLM agents work reliably with real patient records and clinical-trial criteria?</p>
-          <ul>
-            <li><a href="#p-pheno">Clinical AI agents for EHR phenotyping</a></li>
-            <li><a href="#p-trial">Synthetic cohorts for trial matching</a></li>
-          </ul>
-        </div>
-        <div class="scale s-pop">
-          <span class="scale-dot"></span>
-          <div class="scale-name"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c0-2.5 1.3-4.5 3-4.5s4 1.5 4 4.5"/></svg>Population</div>
-          <p class="scale-q">Does health AI reach the people who need it, in a form that fits their culture?</p>
-          <ul>
-            <li><a href="#p-chat">Diabetes prevention chatbots</a></li>
-            <li><a href="#more">AI in cancer care: a systematic review</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
-
 
   <!-- ═════════ EDUCATION ═════════ -->
   <section class="block tint" id="education">
@@ -404,8 +345,8 @@
             <p class="pub-venue">Manuscript under revision at Nature, 2026. <span class="pub-role">Task contributor, equal contribution.</span></p>
             <div class="chips-row">
               <a class="lk" href="https://arxiv.org/abs/2606.12736" target="_blank" rel="noopener">Preprint</a>
-              <a class="lk" href="https://sciagentarena.github.io/" target="_blank" rel="noopener">Website</a>
-              <a class="lk" href="#p-sci">My contribution</a>
+              <a class="lk" href="https://github.com/HelloWorldLTY/SciAgentArena" target="_blank" rel="noopener">Code</a>
+              <a class="lk" href="https://huggingface.co/datasets/iLOVE2D/SciAgentArena" target="_blank" rel="noopener">Data</a>
             </div>
           </div>
         </article>
@@ -432,6 +373,7 @@
             <p class="pub-venue">Accepted at npj Drug Discovery, 2026. <span class="pub-role">Co-first author.</span></p>
             <div class="chips-row">
               <a class="lk" href="https://arxiv.org/abs/2604.02346" target="_blank" rel="noopener">Preprint</a>
+              <a class="lk" href="https://github.com/HelloWorldLTY/drugplayground" target="_blank" rel="noopener">Code</a>
               <a class="lk" href="#p-drug">Project details</a>
             </div>
           </div>
@@ -492,18 +434,11 @@
       <h2 class="h2">Projects</h2>
       <p class="h2-sub">Each project opens to show its pipeline, my role, and what we found.</p>
 
-      <div class="filters" role="group" aria-label="Filter projects by scale">
-        <button class="filter" data-f="all" aria-pressed="true">All projects</button>
-        <button class="filter" data-f="mol" aria-pressed="false" style="--c:var(--mol)"><i></i>Molecule</button>
-        <button class="filter" data-f="cli" aria-pressed="false" style="--c:var(--cli)"><i></i>Clinic</button>
-        <button class="filter" data-f="pop" aria-pressed="false" style="--c:var(--pop)"><i></i>Population</button>
-      </div>
 
       <!-- 1. EHR PHENOTYPING -->
-      <article class="proj open" id="p-pheno" data-scale="cli">
+      <article class="proj open" id="p-pheno">
         <div class="rail">05/2026 –<br/>Present<br/><span class="ongoing">Ongoing</span></div>
         <div>
-          <div class="scale-tag" style="--c:var(--cli)"><i></i>Clinic</div>
           <h3>LLM-based clinical AI agents for EHR phenotyping</h3>
           <p class="proj-meta">Prof. Hua Xu <span>Yale University · Research Assistant</span></p>
           <p class="lede">Phenotyping algorithms decide which patients in a health record "have" a disease, and today they are hand-written as long, site-specific SQL. I study whether an LLM agent can read a published phenotype definition and produce SQL that actually runs, and finds the right patients, on Yale New Haven Health's OMOP data.</p>
@@ -546,10 +481,9 @@
       </article>
 
       <!-- 2. STANFORD TRIAL -->
-      <article class="proj" id="p-trial" data-scale="cli">
+      <article class="proj" id="p-trial">
         <div class="rail">07/2026 –<br/>09/2026</div>
         <div>
-          <div class="scale-tag" style="--c:var(--cli)"><i></i>Clinic</div>
           <h3>Synthetic cohort generation and robustness studies for AI-based clinical trial matching</h3>
           <p class="proj-meta">Prof. Tina Hernandez-Boussard <span>Stanford University · Research Assistant (remote) · Mentor: Soumyadeep Roy</span></p>
           <p class="lede">Testing AI trial-matching tools needs patients who meet, or almost meet, a trial's eligibility rules, and real records with those exact profiles are scarce and sensitive. I built a pipeline that turns a trial's eligibility criteria into a working Synthea module, generates a synthetic cohort, then stresses TrialGPT with controlled perturbations.</p>
@@ -592,10 +526,9 @@
       </article>
 
       <!-- 3. SCIAGENTARENA -->
-      <article class="proj" id="p-sci" data-scale="mol">
+      <article class="proj" id="p-sci">
         <div class="rail">01/2026 –<br/>06/2026</div>
         <div>
-          <div class="scale-tag" style="--c:var(--mol)"><i></i>Molecule</div>
           <h3>Benchmarking AI agents for addressing multi-scale scientific challenges</h3>
           <p class="proj-meta">Prof. Hongyu Zhao <span>Yale University · Research Assistant</span></p>
           <p class="lede">SciAgentArena tests AI agents on about 200 real research tasks with step-by-step verification. I designed its drug-safety and pharmacology tasks, the kind of checks a medicinal chemist runs before a compound moves forward, plus traps that test whether an agent notices when something is wrong.</p>
@@ -621,19 +554,18 @@
                 <div class="tagset"><span class="tg warn">Schema mismatch</span><span class="tg warn">Wrong method selection</span><span class="tg warn">Tool-invocation errors</span><span class="tg warn">Runtime exceptions</span><span class="tg warn">Misread objectives</span></div></div>
               <div class="dcol"><h4>Takeaway</h4><p>Agents do well on clearly specified data-analysis workflows but are uneven on open-ended research, struggling to explore on their own or produce new insight.</p></div>
             </div>
-            <figure class="paper-fig">
-              <img src="figures/sciagentarena-fig1.png" alt="Overview figure from the SciAgentArena preprint" loading="lazy" onerror="this.closest('figure').remove()" />
-              <figcaption>Overview figure from the preprint (arXiv:2606.12736).</figcaption>
+            <figure class="paper-fig" style="max-width:640px">
+              <img src="figures/sciagentarena-fig1.png" alt="SciAgentArena overview: research scales from patient to molecule, the benchmark hub, and the submission interface" loading="lazy" onerror="this.closest('figure').remove()" />
+              <figcaption>SciAgentArena overview. (a) Tasks span scales from patient records to single-cell omics to drug discovery. (b) The benchmark hub with seven task families, including Drug Discovery. (c) The submission and task-catalog interface.</figcaption>
             </figure>
           </div></div></div>
         </div>
       </article>
 
       <!-- 4. VDJBASE -->
-      <article class="proj" id="p-vdj" data-scale="mol">
+      <article class="proj" id="p-vdj">
         <div class="rail">03/2026 –<br/>08/2026</div>
         <div>
-          <div class="scale-tag" style="--c:var(--mol)"><i></i>Molecule</div>
           <h3>End-to-end Nextflow pipeline for expanding the VDJbase database</h3>
           <p class="proj-meta">Prof. Gur Yaari <span>Yale University · Research Assistant</span></p>
           <p class="lede">VDJbase catalogs the germline genes behind antibody and T-cell receptor diversity across populations. I built the data-processing path that takes raw immune-repertoire sequencing data from VDJbase files, through Yale's HPC cluster, to curated entries ready for the database.</p>
@@ -661,10 +593,9 @@
       </article>
 
       <!-- 5. DRUGPLAYGROUND -->
-      <article class="proj" id="p-drug" data-scale="mol">
+      <article class="proj" id="p-drug">
         <div class="rail">05/2025 –<br/>01/2026</div>
         <div>
-          <div class="scale-tag" style="--c:var(--mol)"><i></i>Molecule</div>
           <h3>DrugPlayGround: benchmarking LLMs and embeddings for drug discovery</h3>
           <p class="proj-meta">Prof. Hongyu Zhao <span>Yale University · Research Assistant · Co-first author</span></p>
           <p class="lede">Most drug-discovery models represent a molecule by its structure. We asked whether what language models know about a drug, its mechanism, uses and interactions, carries pharmacological signal that structure alone misses, and built a unified benchmark to test it.</p>
@@ -705,10 +636,9 @@
       </article>
 
       <!-- 6. CHATBOT -->
-      <article class="proj" id="p-chat" data-scale="pop">
+      <article class="proj" id="p-chat">
         <div class="rail">06/2023 –<br/>05/2025</div>
         <div>
-          <div class="scale-tag" style="--c:var(--pop)"><i></i>Population</div>
           <h3>Diabetes prevention chatbots for dietary self-management in the Chinese population</h3>
           <p class="proj-meta">Prof. Ming-Chun Huang <span>Duke Kunshan University · Research Investigator · First author</span></p>
           <p class="lede">Most diet advice in health chatbots is built around Western guidelines and food. I curated China-specific diabetes prevention evidence, fine-tuned GPT models on it, and shipped a web app that gives culturally grounded dietary and lifestyle guidance.</p>
@@ -800,13 +730,6 @@
   window.addEventListener('hashchange', openFromHash);
   if (location.hash) openFromHash();
 
-  // filter by scale
-  const filters = document.querySelectorAll('.filter');
-  filters.forEach(f => f.addEventListener('click', () => {
-    filters.forEach(x => x.setAttribute('aria-pressed', x === f));
-    const k = f.dataset.f;
-    document.querySelectorAll('.proj').forEach(p => { p.hidden = !(k === 'all' || p.dataset.scale === k); });
-  }));
 
   // reading progress + active nav link
   const bar = document.querySelector('.progress');
