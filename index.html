@@ -57,6 +57,16 @@
       background-repeat: no-repeat;
     }
 
+    /* ───────── DOT-WAVE TEXTURE ───────── */
+    main#top { position: relative; }
+    .waves { position: absolute; left: 0; width: 100%; pointer-events: none; z-index: 0; display: block; }
+    .waves-hero { top: 0; height: 640px;
+      -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.28) 48%, #000 80%), linear-gradient(180deg, #000 70%, transparent 100%);
+      -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.28) 48%, #000 80%), linear-gradient(180deg, #000 70%, transparent 100%); mask-composite: intersect; }
+    .hero-wrap { position: relative; z-index: 1; }
+    #contact .waves { inset: 0; height: 100%; opacity: .5; }
+    #contact .wrap { position: relative; z-index: 1; }
+
     /* ───────── HERO ───────── */
     .hero { padding: 120px 0 72px; display: grid; grid-template-columns: 1fr 210px; gap: 3.5rem; align-items: start; }
     .hero h1 {
@@ -264,9 +274,10 @@
 </nav>
 
 <main id="top">
+  <canvas class="waves waves-hero" aria-hidden="true" data-palette="light"></canvas>
 
   <!-- ═════════ HERO ═════════ -->
-  <div class="wrap">
+  <div class="wrap hero-wrap">
     <header class="hero">
       <div>
         <h1 class="intro">Sihan Jiang</h1>
@@ -693,6 +704,7 @@
 
   <!-- ═════════ CONTACT ═════════ -->
   <section class="block" id="contact">
+    <canvas class="waves" aria-hidden="true" data-palette="dark"></canvas>
     <div class="wrap">
       <h2 class="h2">Contact</h2>
       <p class="h2-sub">Feel free to reach out if you'd like to!</p>
@@ -711,6 +723,52 @@
 <script>
   // one orchestrated load moment
   requestAnimationFrame(() => document.body.classList.add('loaded'));
+
+  // dot-wave ribbons (background texture)
+  (function () {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const palettes = {
+      light: [{ c: '56,189,248', a: .75 }, { c: '37,99,235', a: .6 }],
+      dark:  [{ c: '56,189,248', a: .55 }, { c: '129,140,248', a: .45 }]
+    };
+    // each ribbon: vertical center (fraction), main wave, twist wave
+    const ribbons = [
+      { y: .40, amp: .12, k: 2.0, ph: 0.0, tw: .30, tk: 1.5, tph: 1.2, sp: .00022 },
+      { y: .62, amp: .14, k: 1.6, ph: 2.4, tw: .30, tk: 2.1, tph: 0.3, sp: .00017 }
+    ];
+    document.querySelectorAll('canvas.waves').forEach(cv => {
+      const ctx = cv.getContext('2d');
+      const pal = palettes[cv.dataset.palette] || palettes.light;
+      let w, h, visible = true, t0 = performance.now();
+      function size() {
+        const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+        w = r.width; h = r.height; cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+      }
+      function draw(now) {
+        const t = (now - t0);
+        ctx.clearRect(0, 0, w, h);
+        const lines = 14, step = w < 700 ? 6 : 4.5;
+        ribbons.forEach((rb, i) => {
+          const { c, a } = pal[i];
+          for (let j = 0; j < lines; j++) {
+            const f = j / (lines - 1) - .5;              // position across the ribbon
+            ctx.fillStyle = `rgba(${c},${a * (0.45 + 0.55 * (1 - Math.abs(f) * 1.6))})`;
+            for (let x = (j % 3) * 1.5; x <= w; x += step) {
+              const u = x / w * Math.PI * 2;
+              const ph = rb.ph + t * rb.sp, tph = rb.tph - t * rb.sp * 1.3;
+              const y = h * (rb.y + rb.amp * Math.sin(u * rb.k + ph) + f * rb.tw * 2 * Math.cos(u * rb.tk + tph) + f * .05 * (x / w));
+              ctx.fillRect(x, y, 1.3, 1.3);
+            }
+          }
+        });
+      }
+      function loop(now) { if (visible) draw(now); if (!reduce) requestAnimationFrame(loop); }
+      size(); draw(performance.now());
+      addEventListener('resize', () => { size(); draw(performance.now()); });
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(cv);
+      if (!reduce) requestAnimationFrame(loop);
+    });
+  })();
 
   // expand / collapse projects
   document.querySelectorAll('.proj .toggle').forEach(btn => {
